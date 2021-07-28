@@ -6,6 +6,6 @@ const api = {
 }
 
 
-export function getHomeSwipper(data) {
-	return request('post', api.getHomeSwipper,data)
-}
+
+
+export const getHomeSwipper = (data) => request('post', api.getHomeSwipper, data)

@@ -1,0 +1,235 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.index .head.data-v-1524273d {
+  height: 446rpx;
+  width: 100%;
+  position: relative;
+}
+.index .head .head-search.data-v-1524273d {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 90rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  background-color: #FFB517;
+}
+.index .head .head-search .class-icon.data-v-1524273d {
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  width: 90rpx;
+  color: #FFFFFF;
+}
+.index .head .head-search .class-icon .icon.data-v-1524273d {
+  height: 58rpx;
+}
+.index .head .head-search .class-icon .icon ._i.data-v-1524273d {
+  font-size: 60rpx;
+}
+.index .head .head-search .class-icon text.data-v-1524273d {
+  font-size: 18rpx;
+}
+.index .head .head-search .search input.data-v-1524273d {
+  width: 568rpx;
+  height: 64rpx;
+  background-color: #FFFFFF;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  padding: 0px 10px;
+}
+.index .head .head-nav.data-v-1524273d {
+  background-color: #FFB517;
+  height: 175rpx;
+}
+.index .head .head-nav .nav.data-v-1524273d {
+  height: 90rpx;
+  width: 100%;
+  padding: 0rpx 30rpx;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  color: #FFFFFF;
+  font-size: 26rpx;
+}
+.index .head .head-nav .nav view.data-v-1524273d {
+  text-align: center;
+  letter-spacing: 6rpx;
+}
+.index .head .head-nav .nav view.data-v-1524273d:nth-child(1) {
+  position: relative;
+}
+.index .head .head-nav .nav view.data-v-1524273d:nth-child(1)::before {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: -6rpx;
+  width: 74rpx;
+  height: 8rpx;
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(255, 158, 0, 0.8));
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 158, 0, 0.8));
+}
+.index .head .swiper-contenter.data-v-1524273d {
+  width: 100%;
+  height: 265rpx;
+  border-radius: 7rpx;
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  bottom: 2rpx;
+}
+.index .head .swiper-contenter .swiper.data-v-1524273d {
+  width: 720rpx;
+  height: 265rpx;
+  border-radius: 10rpx;
+}
+.index .head .swiper-contenter .swiper .swiper-img.data-v-1524273d {
+  width: 100%;
+  height: 100%;
+}
+.index .head .swiper-contenter .swiper .swiper-img image.data-v-1524273d {
+  width: 100%;
+}
+.index .goods-style.data-v-1524273d {
+  width: 100%;
+  height: 354rpx;
+  box-sizing: border-box;
+  padding: 0px 15rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.index .goods-style .style-container.data-v-1524273d {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.index .goods-style .style-container .style.data-v-1524273d {
+  width: 229rpx;
+  height: 142rpx;
+  background: #FFB6B3;
+  border-radius: 7rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0rpx 22rpx 0rpx 14rpx;
+  margin-bottom: 17rpx;
+}
+.index .goods-style .style-container .style .style-lf.data-v-1524273d,
+.index .goods-style .style-container .style .style-lr.data-v-1524273d {
+  height: 142rpx;
+  box-sizing: border-box;
+}
+.index .goods-style .style-container .style .style-lf.data-v-1524273d {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  font-size: 20rpx;
+  color: #1D1D1D;
+  padding: 22rpx 0px 22rpx;
+}
+.index .goods-style .style-container .style .style-lr.data-v-1524273d {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding-top: 26rpx;
+}
+.index .goods-style .style-container .style .style-lr .style-img.data-v-1524273d {
+  width: 104rpx;
+  height: 104rpx;
+}
+.index .goods-style .style-container .style .style-lr .style-img image.data-v-1524273d {
+  border-radius: 50%;
+  width: 100%;
+}
+.index .bag-hall .bag-title.data-v-1524273d {
+  padding: 0px 15rpx;
+  height: 40rpx;
+  font-size: 20rpx;
+}
+.index .bag-hall .bag-swiper.data-v-1524273d {
+  width: 100%;
+  height: 265rpx;
+  border-radius: 7rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.index .bag-hall .bag-swiper .swiper.data-v-1524273d {
+  width: 720rpx;
+  height: 265rpx;
+  border-radius: 10rpx;
+}
+.index .bag-hall .bag-swiper .swiper .swiper-img.data-v-1524273d {
+  width: 100%;
+  height: 100%;
+}
+.index .bag-hall .bag-swiper .swiper .swiper-img image.data-v-1524273d {
+  width: 100%;
+}
+

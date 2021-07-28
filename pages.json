@@ -1,24 +1,24 @@
 {
 	"pages": [{
-		"path": "pages/index/index",
+		"path": "pages/tabBar/index/index",
 		"style": {
 			"navigationBarTitleText": "多比家具商城"
 		}
 	},
 	{
-		"path": "pages/class/class",
+		"path": "pages/tabBar/class/class",
 		"style": {
 			"navigationBarTitleText": "购物车"
 		}
 	},
 	{
-		"path": "pages/cart/cart",
+		"path": "pages/tabBar/cart/cart",
 		"style": {
 			"navigationBarTitleText": "商品分类"
 		}
 	},
 	{
-		"path": "pages/myCenter/myCenter",
+		"path": "pages/tabBar/myCenter/myCenter",
 		"style": {
 			"navigationBarTitleText": "个人中心"
 		}
@@ -36,25 +36,25 @@
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/tabBar/index/index",
 				"iconPath": "static/tab-home0.png",
 				"selectedIconPath": "static/tab-home1.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/class/class",
+				"pagePath": "pages/tabBar/class/class",
 				"iconPath": "static/tab-cate0.png",
 				"selectedIconPath": "static/tab-cate1.png",
 				"text": "分类"
 			},
 			{
-				"pagePath": "pages/cart/cart",
+				"pagePath": "pages/tabBar/cart/cart",
 				"iconPath": "static/tab-shop0.png",
 				"selectedIconPath": "static/tab-shop1.png",
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/myCenter/myCenter",
+				"pagePath": "pages/tabBar/myCenter/myCenter",
 				"iconPath": "static/tab-my0.png",
 				"selectedIconPath": "static/tab-my1.png",
 				"text": "我的"
