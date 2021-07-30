@@ -61,29 +61,52 @@
 		</view>
 		<view class="bag-hall">
 			<view class="bag-title">整装拎包</view>
-			<div class="bag-swiper">
-				<swiper class="swiper" indicator-active-color="#FFB517" :indicator-dots="true" :autoplay="true" :interval="2000"
-				 :duration="500">
-					<swiper-item>
-						<view class="swiper-img">
-							<image src="https://img.alicdn.com/imgextra/i3/6000000003731/O1CN016VwHel1dQqPXjgJIt_!!6000000003731-0-octopus.jpg"
-							 mode="widthFix"></image>
-						</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-img">
-							<image src="https://img.alicdn.com/imgextra/i3/6000000003731/O1CN016VwHel1dQqPXjgJIt_!!6000000003731-0-octopus.jpg"
-							 mode="widthFix"></image>
-						</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-img">
-							<image src="https://img.alicdn.com/imgextra/i3/6000000003731/O1CN016VwHel1dQqPXjgJIt_!!6000000003731-0-octopus.jpg"
-							 mode="widthFix"></image>
-						</view>
-					</swiper-item>
-				</swiper>
-			</div>
+			<vie class="bag-container">
+				<view class="bag-swiper">
+					<swiper class="swiper" indicator-active-color="#FFB517" :indicator-dots="true" :autoplay="true" :interval="2000"
+					 :duration="500">
+						<swiper-item>
+							<view class="swiper-img">
+								<image src="https://img.alicdn.com/imgextra/i3/6000000003731/O1CN016VwHel1dQqPXjgJIt_!!6000000003731-0-octopus.jpg"
+								 mode="widthFix"></image>
+							</view>
+						</swiper-item>
+						<swiper-item>
+							<view class="swiper-img">
+								<image src="https://img.alicdn.com/imgextra/i3/6000000003731/O1CN016VwHel1dQqPXjgJIt_!!6000000003731-0-octopus.jpg"
+								 mode="widthFix"></image>
+							</view>
+						</swiper-item>
+						<swiper-item>
+							<view class="swiper-img">
+								<image src="https://img.alicdn.com/imgextra/i3/6000000003731/O1CN016VwHel1dQqPXjgJIt_!!6000000003731-0-octopus.jpg"
+								 mode="widthFix"></image>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
+				<view class="bag-footer">
+					整装拎包
+				</view>
+			</vie>
+		</view>
+		<view class="hot-selected">
+			<view class="hot-title">
+				热门精选
+			</view>
+			<view class="hot-container">
+				<view class="hot" v-for="(hot,index) in hotList" :key="index">
+					<view class="hot-img">
+						<image :src="hot.filePath" mode="widthFix"></image>
+					</view>
+					<view class="hot-name">
+						{{hot.goodsName}}
+					</view>
+					<view class="hot-price">
+						￥{{hot.price}}
+					</view>
+				</view>
+			</view>
 
 		</view>
 	</view>
@@ -124,10 +147,32 @@
 			color: '#A5F598'
 		},
 	]
+	const hotList = [{
+			goodsName: 'LM33-真皮沙发',
+			price: 222,
+			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+		},
+		{
+			goodsName: 'LM33-真皮沙发',
+			price: 222,
+			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+		},
+		{
+			goodsName: 'LM33-真皮沙发',
+			price: 23,
+			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+		},
+		{
+			goodsName: 'LM33-真皮沙发',
+			price: 222,
+			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+		},
+	]
 	export default {
 		data() {
 			return {
 				styleList,
+				hotList,
 			}
 		},
 		created() {
@@ -141,12 +186,28 @@
 		},
 		methods: {
 
+		},
+
+		onReachBottom(e) {
+			uni.showLoading({
+				title: '加载中...',
+				success: () => {
+					setTimeout(() => {
+						uni.hideLoading()
+						this.hotList = this.hotList.concat(hotList)
+					}, 1500)
+				}
+			})
+
 		}
+
 	}
 </script>
 
 <style scoped lang="scss">
 	.index {
+		background-color: #F6F6F6FF;
+
 		.head {
 			height: 446rpx;
 			width: 100%;
@@ -289,8 +350,6 @@
 						font-size: 20rpx;
 						color: #1D1D1D;
 						padding: 22rpx 0px 22rpx;
-
-
 					}
 
 					.style-lr {
@@ -313,33 +372,105 @@
 		}
 
 		.bag-hall {
+			width: 100%;
+			padding: 0px 15rpx;
+			box-sizing: border-box;
+
 			.bag-title {
-				padding: 0px 15rpx;
+
 				height: 40rpx;
 				font-size: 20rpx;
 			}
 
-			.bag-swiper {
-				width: 100%;
-				height: 265rpx;
-				border-radius: 7rpx;
-				display: flex;
-				justify-content: center;
-				.swiper {
-					width: 720rpx;
+			.bag-container {
+				.bag-footer {
+					text-align: center;
+					height: 50rpx;
+					line-height: 50rpx;
+					font-size: 20rpx;
+					width: 100%;
+					box-shadow: 0rpx 4rpx 11rpx 0rpx rgba(124, 124, 124, 0.22);
+					border-radius: 0rpx 0rpx 7rpx 7rpx;
+					background-color: #FFFFFF;
+				}
+
+				.bag-swiper {
+					width: 100%;
 					height: 265rpx;
-					border-radius: 10rpx;
-					.swiper-img {
-						width: 100%;
-						height: 100%;
-						image {
+					border-radius: 7rpx;
+					display: flex;
+					justify-content: center;
+
+					.swiper {
+						width: 720rpx;
+						height: 265rpx;
+						border-radius: 10rpx;
+
+						.swiper-img {
 							width: 100%;
+							height: 100%;
+
+							image {
+								width: 100%;
+							}
 						}
 					}
 				}
+
 			}
 
 		}
 
+		.hot-selected {
+			width: 100%;
+			box-sizing: border-box;
+			padding: 0px 14rpx;
+
+			.hot-title {
+				height: 90rpx;
+				line-height: 90rpx;
+				font-size: 20rpx;
+			}
+
+			.hot-container {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+
+				.hot {
+					width: 346rpx;
+					height: 461rpx;
+					background-color: #FFFFFF;
+					border: 2rpx solid #F4F4F4;
+					box-sizing: border-box;
+					padding: 0px 26rpx;
+					font-size: 20rpx;
+					margin-bottom: 17rpx;
+
+					.hot-img {
+						width: 295rpx;
+						height: 295rpx;
+						margin: 25rpx 0px 30rpx;
+
+						image {
+							width: 100%;
+						}
+					}
+
+					.hot-name {
+						text-align: center;
+						height: 32rpx;
+						width: 100%;
+						border-bottom: 2rpx solid #F4F4F4;
+					}
+
+					.hot-price {
+						margin-top: 30rpx;
+						color: #FF0000FF;
+						text-align: center;
+					}
+				}
+			}
+		}
 	}
 </style>

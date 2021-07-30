@@ -1,8 +1,10 @@
 {
-	"pages": [{
+	"pages": [
+		{
 		"path": "pages/tabBar/index/index",
 		"style": {
-			"navigationBarTitleText": "多比家具商城"
+			"navigationBarTitleText": "多比家具商城",
+			"enablePullDownRefresh": true
 		}
 	},
 	{
@@ -60,5 +62,8 @@
 				"text": "我的"
 			}
 		]
+	},
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	}
 }

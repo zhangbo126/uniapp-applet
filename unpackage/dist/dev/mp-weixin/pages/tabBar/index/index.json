@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "多比家具商城",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-icons": "/components/uni-icons/uni-icons"
   }
