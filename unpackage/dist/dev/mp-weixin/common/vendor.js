@@ -10263,7 +10263,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */
 /*!**********************************************************!*\
   !*** C:/Users/Administrator/Desktop/db_shop/api/home.js ***!
   \**********************************************************/
@@ -10271,7 +10279,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getHomeSwipper = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ../utils/request.js */ 49));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getHomeSwipper = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ../utils/request.js */ 57));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 
 var api = {
@@ -10284,7 +10292,7 @@ var api = {
 var getHomeSwipper = function getHomeSwipper(data) {return (0, _request.default)('post', api.getHomeSwipper, data);};exports.getHomeSwipper = getHomeSwipper;
 
 /***/ }),
-/* 49 */
+/* 57 */
 /*!***************************************************************!*\
   !*** C:/Users/Administrator/Desktop/db_shop/utils/request.js ***!
   \***************************************************************/
@@ -10322,14 +10330,6 @@ request;exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
 /* 58 */,
 /* 59 */,
 /* 60 */,
@@ -10347,7 +10347,43 @@ request;exports.default = _default;
 /* 72 */,
 /* 73 */,
 /* 74 */,
-/* 75 */
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */
 /*!****************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/db_shop/components/uni-icons/icons.js ***!
   \****************************************************************************/

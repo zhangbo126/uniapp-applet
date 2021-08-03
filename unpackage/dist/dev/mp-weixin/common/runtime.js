@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/uni-icons/uni-icons":1};
+/******/ 		var cssChunks = {"uview-ui/components/u-tabs/u-tabs":1,"components/uni-popup-modal/uni-popup-modal":1,"uview-ui/components/u-icon/u-icon":1,"uview-ui/components/u-swiper/u-swiper":1,"components/uni-icons/uni-icons":1,"uview-ui/components/u-badge/u-badge":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/uni-icons/uni-icons":"components/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"uview-ui/components/u-tabs/u-tabs":"uview-ui/components/u-tabs/u-tabs","components/uni-popup-modal/uni-popup-modal":"components/uni-popup-modal/uni-popup-modal","uview-ui/components/u-icon/u-icon":"uview-ui/components/u-icon/u-icon","uview-ui/components/u-swiper/u-swiper":"uview-ui/components/u-swiper/u-swiper","components/uni-icons/uni-icons":"components/uni-icons/uni-icons","uview-ui/components/u-badge/u-badge":"uview-ui/components/u-badge/u-badge"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

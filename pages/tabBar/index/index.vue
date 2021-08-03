@@ -95,7 +95,7 @@
 				热门精选
 			</view>
 			<view class="hot-container">
-				<view class="hot" v-for="(hot,index) in hotList" :key="index">
+				<view class="hot" v-for="(hot,index) in hotList" :key="index" @click="goDetail()">
 					<view class="hot-img">
 						<image :src="hot.filePath" mode="widthFix"></image>
 					</view>
@@ -185,7 +185,12 @@
 			})
 		},
 		methods: {
-
+               //跳转详情
+			   goDetail(){
+				   uni.navigateTo({
+				   	url:'/pages/goodsDetail/goodsDetail',
+				   })
+			   }
 		},
 
 		onReachBottom(e) {
@@ -207,38 +212,31 @@
 <style scoped lang="scss">
 	.index {
 		background-color: #F6F6F6FF;
-
 		.head {
 			height: 446rpx;
 			width: 100%;
 			position: relative;
-
 			.head-search {
 				display: flex;
 				height: 90rpx;
 				align-items: center;
 				background-color: #FFB517;
-
 				.class-icon {
 					text-align: center;
 					display: flex;
 					flex-direction: column;
 					width: 90rpx;
 					color: #FFFFFF;
-
 					.icon {
 						height: 58rpx;
-
 						i {
 							font-size: 60rpx;
 						}
 					}
-
 					text {
 						font-size: 18rpx;
 					}
 				}
-
 				.search {
 					input {
 						width: 568rpx;
@@ -254,7 +252,6 @@
 			.head-nav {
 				background-color: #FFB517;
 				height: 175rpx;
-
 				.nav {
 					height: 90rpx;
 					width: 100%;
@@ -265,7 +262,6 @@
 					align-items: center;
 					color: #FFFFFF;
 					font-size: 26rpx;
-
 					view {
 						text-align: center;
 						letter-spacing: 6rpx;

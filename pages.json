@@ -1,36 +1,42 @@
 {
 	"pages": [
 		{
-		"path": "pages/tabBar/index/index",
-		"style": {
-			"navigationBarTitleText": "多比家具商城",
-			"enablePullDownRefresh": true
+			"path": "pages/goodsDetail/goodsDetail",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
+		},{
+			"path": "pages/tabBar/index/index",
+			"style": {
+				"navigationBarTitleText": "多比家具商城",
+				"enablePullDownRefresh": true
+
+			}
+		},
+		{
+			"path": "pages/tabBar/class/class",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/tabBar/cart/cart",
+			"style": {
+				"navigationBarTitleText": "商品分类"
+			}
+		},
+		{
+			"path": "pages/tabBar/myCenter/myCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
 		}
-	},
-	{
-		"path": "pages/tabBar/class/class",
-		"style": {
-			"navigationBarTitleText": "购物车"
-		}
-	},
-	{
-		"path": "pages/tabBar/cart/cart",
-		"style": {
-			"navigationBarTitleText": "商品分类"
-		}
-	},
-	{
-		"path": "pages/tabBar/myCenter/myCenter",
-		"style": {
-			"navigationBarTitleText": "个人中心"
-		}
-	}
 	],
 	"globalStyle": {
-	"navigationBarTextStyle": "white",
-	"navigationBarTitleText": "导航栏标题",
-	"navigationBarBackgroundColor": "#FFB517",
-	"backgroundColor": "#FFB517"
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "导航栏标题",
+		"navigationBarBackgroundColor": "#FFB517",
+		"backgroundColor": "#FFB517"
 	},
 	"tabBar": {
 		"color": "#7A7E83",
