@@ -4,6 +4,7 @@
     "u-tabs": "/uview-ui/components/u-tabs/u-tabs",
     "u-swiper": "/uview-ui/components/u-swiper/u-swiper",
     "u-icon": "/uview-ui/components/u-icon/u-icon",
-    "uni-popup-modal": "/components/uni-popup-modal/uni-popup-modal"
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "u-number-box": "/uview-ui/components/u-number-box/u-number-box"
   }
 }

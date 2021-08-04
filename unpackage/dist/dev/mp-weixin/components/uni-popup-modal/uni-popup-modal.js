@@ -77,7 +77,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
 //
 //
 //
@@ -97,10 +101,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   props: {
-    visible: {
-      Type: Boolean,
-      default: false },
-
     height: {
       Type: Number,
       default: 400 },
@@ -111,28 +111,45 @@ var _default =
 
     radius: {
       Type: Number,
-      default: 12 } },
+      default: 14 } },
 
 
   data: function data() {
     return {
+      visible: false,
       style: {
         height: "".concat(this.height, "px"),
         borderRadius: "".concat(this.radius, "px ").concat(this.radius, "px 0 0"),
-        transform: "translateY(".concat(this.height, "px)") } };
+        transform: "translateY(".concat(this.height, "px)") },
+
+      maskStyle: {
+        height: '' } };
+
+
+  },
+  mounted: function mounted() {var _this = this;
+    uni.getSystemInfo({
+      success: function success(res) {
+        _this.maskStyle.height = res.windowHeight - _this.height + 'px';
+      } });
 
 
   },
   methods: {
     onClone: function onClone() {
-      this.style.transform = "translateY(".concat(this.height, "px)");
-      console.log(this.style.transform);
-    },
-    onShowMoadal: function onShowMoadal() {
 
-      this.style.transform = "translateY(-".concat(this.height, "px)");
+      this.style.transform = "translateY(".concat(this.height, "px)");
+
+
+    },
+    onShowMoadal: function onShowMoadal() {var _this2 = this;
+      this.visible = true;
+      this.$nextTick(function () {
+        _this2.style.transform = "translateY(0px)";
+      });
 
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

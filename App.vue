@@ -23,4 +23,7 @@
 	}
 
 	/* #endif */
+	page{
+		height: 100%;
+	}
 </style>

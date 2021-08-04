@@ -24,31 +24,24 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.popup-modal .mask {
+.popup-modal {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   height: 100%;
-  z-index: 100000;
+  z-index: 10000;
   background-color: rgba(0, 0, 0, 0.45);
-  filter: alpha(opacity=50);
-  pointer-events: none;
 }
 .popup-modal .modal {
   width: 100%;
   box-sizing: border-box;
   padding: 0rpx 20rpx;
   background-color: #FFFFFF;
-  position: fixed;
-  right: 0;
-  bottom: -750rpx;
-  left: 0;
-  z-index: 100000;
-  overflow: auto;
-  -webkit-transition: 1s all;
-  transition: 1s all;
+  z-index: 1000000;
+  -webkit-transition: .5s all;
+  transition: .5s all;
 }
 .popup-modal .modal .modal-head {
   display: -webkit-box;
