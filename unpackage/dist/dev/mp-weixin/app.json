@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/goodsDetail/goodsDetail",
     "pages/tabBar/index/index",
+    "pages/goodsDetail/goodsDetail",
     "pages/tabBar/class/class",
     "pages/tabBar/cart/cart",
     "pages/tabBar/myCenter/myCenter"
@@ -45,6 +45,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

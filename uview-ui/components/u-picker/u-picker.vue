@@ -304,6 +304,7 @@ export default {
 		},
 		// 如果地区发生变化，为了让picker联动起来，必须重置this.citys和this.areas
 		regionChange(val) {
+		
 			this.citys = citys[this.province];
 			this.areas = areas[this.province][this.city];
 		},
@@ -487,6 +488,7 @@ export default {
 		},
 		setCitys() {
 			if (!this.params.city) return;
+			
 			let tmp = '';
 			let useCode = false;
 			if (this.areaCode.length) {
@@ -505,6 +507,7 @@ export default {
 		},
 		setAreas() {
 			if (!this.params.area) return;
+			
 			let tmp = '';
 			let useCode = false;
 			if (this.areaCode.length) {

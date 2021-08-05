@@ -150,22 +150,22 @@
 	const hotList = [{
 			goodsName: 'LM33-真皮沙发',
 			price: 222,
-			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+			filePath: 'https://www.duobihouse.com/fileSure/2020/9/7/image/1/59cdbd2486d0428089db097b05e7d9f1.jpg'
 		},
 		{
 			goodsName: 'LM33-真皮沙发',
 			price: 222,
-			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+			filePath: 'https://www.duobihouse.com/fileSure/2020/9/7/image/1/59cdbd2486d0428089db097b05e7d9f1.jpg'
 		},
 		{
 			goodsName: 'LM33-真皮沙发',
 			price: 23,
-			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+			filePath: 'https://www.duobihouse.com/fileSure/2020/9/7/image/1/59cdbd2486d0428089db097b05e7d9f1.jpg'
 		},
 		{
 			goodsName: 'LM33-真皮沙发',
 			price: 222,
-			filePath: 'https://img.alicdn.com/imgextra/i1/2387643426/O1CN01qY3tvg1bB9SRQFp4l_!!2387643426-0-daren.jpg_180x180xzq90.jpg_.webp'
+			filePath: 'https://www.duobihouse.com/fileSure/2020/9/7/image/1/59cdbd2486d0428089db097b05e7d9f1.jpg'
 		},
 	]
 	export default {

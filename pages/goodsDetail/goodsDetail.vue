@@ -24,26 +24,25 @@
 				</view>
 			</view>
 			<view class="goods-option">
-				<view class="option-list">
+				<view class="option-list" @click="openGoodsPopup()">
 					<view class="lable">已选 </view>
 					<view class="content">{{selectTxt.colorTxt}}{{selectTxt.mixTxt}}{{selectTxt.numTxt}}</view>
 					<view class="more">
-						<u-icon name="more-dot-fill" @click="openGoodsPopup()" color="#B5B5B5FF" size="34"></u-icon>
+						<u-icon name="more-dot-fill" color="#B5B5B5FF" size="34"></u-icon>
 					</view>
 				</view>
-				<view class="option-list">
+				<view class="option-list" @click="showPickerAddr=true">
 					<view class="lable">送至</view>
-					<view class="content">广东佛山 至 四川成都市双流区县城内</view>
+					
+					<view class="content">{{addressTxt.province.label}} {{addressTxt.city.label}} {{addressTxt.area.label}}</view>
 					<view class="more">
 						<u-icon name="more-dot-fill" color="#B5B5B5FF" size="34"></u-icon>
 					</view>
 				</view>
-				<view class="option-list">
+				<view class="option-list" >
 					<view class="lable">服务</view>
-					<view class="content">送货入户并安装0.00</view>
-					<view class="more">
-						<u-icon name="more-dot-fill" color="#B5B5B5FF" size="34"></u-icon>
-					</view>
+					<view class="content">送货入户并安装</view>
+					
 				</view>
 			</view>
 			<view class="service">
@@ -64,7 +63,7 @@
 					<text>15天保价</text>
 				</view>
 			</view>
-			<view class="goods-info" id="scroll1">
+			<view class="goods-info" ref="scroll1" id="scroll1">
 				<view class="info-tabs">
 					<view :class="tabInfoIndex==0?'info-active':''" @click="onChangeInfo(0)">商品介绍</view>
 					<view :class="tabInfoIndex==1?'info-active':''" @click="onChangeInfo(1)">规格参数</view>
@@ -140,7 +139,7 @@
 		</scroll-view>
 		<!-- 底部操作菜单 -->
 		<view class="page-bottom">
-			<navigator url="/pages/index/index" open-type="switchTab" class="p-b-btn">
+			<navigator url="/pages/tabBar/index/index" open-type="switchTab"  class="p-b-btn">
 				<u-icon name="home-fill"></u-icon>
 				<text>首页</text>
 			</navigator>
@@ -148,16 +147,17 @@
 				<u-icon name="car-fill"></u-icon>
 				<text>购物车</text>
 			</navigator>
-			<view class="p-b-btn" :class="{active: favorite}" >
+			<view class="p-b-btn">
 				<u-icon name="heart-fill"></u-icon>
 				<text>收藏</text>
 			</view>
 
 			<view class="action-btn-group">
-				<button type="primary" class=" action-btn no-border buy-now-btn" >立即购买</button>
-				<button type="primary" class=" action-btn no-border add-cart-btn">加入购物车</button>
+				<button type="primary" class="action-btn no-border buy-now-btn" @click="onBuy">立即购买</button>
+				<button type="primary" class="action-btn no-border add-cart-btn" @click="onAddCart">加入购物车</button>
 			</view>
 		</view>
+		<!-- 商品规格选择 -->
 		<uni-popup ref="popup" type="bottom" background-color="#fff">
 			<view class="make-box">
 				<view class="make-goods">
@@ -216,6 +216,9 @@
 				</view>
 			</view>
 		</uni-popup>
+		<!-- 省市区选择 -->
+
+		<u-picker mode="region" @confirm="onConfirm" :area-code='[ addressTxt.province.value, addressTxt.city.value,addressTxt.area.value]' v-model="showPickerAddr"></u-picker>
 	</view>
 </template>
 
@@ -330,10 +333,11 @@
 				colorItem,
 				mixItem,
 				recommList,
+				showPickerAddr: false,
 				current: 0,
 				colorIndex: 0,
 				mixIndex: 0,
-				richHtml:'<p style=\"text-align: center;\"><img src=\"https://www.duobihouse.com/fileUEditor/upload/image/20210731/6376334413454683059410276.jpg\" title=\"R-B-9016.jpg\" alt=\"R-B-9016.jpg\"/></p>',
+				richHtml: '<p style=\"text-align: center;\"><img src=\"https://www.duobihouse.com/fileUEditor/upload/image/20210731/6376334413454683059410276.jpg\" title=\"R-B-9016.jpg\" alt=\"R-B-9016.jpg\"/></p>',
 				tabInfoIndex: 0,
 				scrollViewId: 'scroll0',
 				scrollHeight: '600px',
@@ -346,24 +350,50 @@
 					colorTxt: '湖水蓝',
 					mixTxt: '单人位（0.8米）',
 					numTxt: 1
+				},
+				addressTxt: {
+					area: {
+						value: '110101',
+						label:'东城区'
+					},
+					city: {
+						value: '1101',
+						label:'市辖区'
+					},
+					province: {
+						value: '11',
+						label:'北京市'
+					}
 				}
 			};
 		},
-		created() {
-			this.richHtml = this.imgAddMaxWidth(this.richHtml)
-			
-		},
 
 		mounted() {
-			//获取 商品 + 详情 + 推荐 初始化时距离顶部的位置
-			const query = uni.createSelectorQuery().in(this);
-			for (let i = 0; i <= 2; i++) {
-				query.select(`#scroll${i}`).boundingClientRect(data => {
-					this.scrollTopInfo[`scroll${i}`] = data.top - 60
-				}).exec();
-			}
+			//在富文本框内容渲染完成之后 获取元素距离顶部高度
+			this.imgAddMaxWidth(this.richHtml).then(res => {
+				this.richHtml = res
+			}).then(() => {
+				//获取 商品 + 详情 + 推荐 初始化时距离顶部的位置
+				this.$nextTick(() => {
+					// console.log(this.$refs.scroll1.$el.getBoundingClientRect())
+					const query = uni.createSelectorQuery().in(this);
+					for (let i = 0; i <= 2; i++) {
+						query.select(`#scroll${i}`).boundingClientRect(data => {
+							this.scrollTopInfo[`scroll${i}`] = data.top - 60
+						}).exec();
+					}
+				})
+			})
+
+
 		},
+
 		methods: {
+			/*省市区选择*/
+			onConfirm(e) {
+                Object.assign(this.addressTxt,e)
+				
+			},
 			onClickColor(color, index) {
 				this.colorIndex = index
 				this.selectTxt.colorTxt = color.name + ' , '
@@ -386,12 +416,15 @@
 				this.tabInfoIndex = i
 			},
 			imgAddMaxWidth(str) {
-				if (!str) {
-					return "";
-				}
-				let regex = new RegExp("/>", "gi");
-				let resStr = str.replace(regex, " style='max-width: 100%;'/>");
-				return resStr;
+				return new Promise((reslove, reject) => {
+					if (!str) {
+						return "";
+					}
+					let regex = new RegExp("/>", "gi");
+					let resStr = str.replace(regex, " style='max-width: 100%;'/>");
+					reslove(resStr)
+
+				})
 			},
 			onScroll(e) {
 				const top = e.detail.scrollTop
@@ -409,6 +442,9 @@
 				if (top >= scroll2) {
 					this.current = 2
 				}
+				console.log('位置打印', top, scroll0, scroll1, scroll2)
+
+
 			},
 			onBuy() {
 				uni.showToast({
@@ -452,6 +488,7 @@
 
 		.goods {
 			background-color: #FFFFFF;
+
 			.goods-swiper {
 				height: 570rpx;
 				padding: 2px 60rpx;
@@ -509,6 +546,7 @@
 					height: 100%;
 					display: flex;
 					align-items: center;
+					justify-content: center;
 				}
 			}
 		}
@@ -644,7 +682,8 @@
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
-                margin-bottom: 	120rpx;
+				margin-bottom: 120rpx;
+
 				.list {
 					width: 346rpx;
 					background-color: #FFFFFF;
