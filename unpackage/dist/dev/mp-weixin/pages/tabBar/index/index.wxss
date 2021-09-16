@@ -31,7 +31,7 @@
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
 .index.data-v-1524273d {
-  background-color: #F6F6F6FF;
+  background-color: #f6f6f6ff;
 }
 .index .head.data-v-1524273d {
   height: 446rpx;
@@ -46,7 +46,7 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  background-color: #FFB517;
+  background-color: #ffb517;
 }
 .index .head .head-search .class-icon.data-v-1524273d {
   text-align: center;
@@ -58,7 +58,7 @@
   -webkit-flex-direction: column;
           flex-direction: column;
   width: 90rpx;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .index .head .head-search .class-icon .icon.data-v-1524273d {
   height: 58rpx;
@@ -72,13 +72,13 @@
 .index .head .head-search .search input.data-v-1524273d {
   width: 568rpx;
   height: 64rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 32rpx;
   box-sizing: border-box;
   padding: 0px 10px;
 }
 .index .head .head-nav.data-v-1524273d {
-  background-color: #FFB517;
+  background-color: #ffb517;
   height: 175rpx;
 }
 .index .head .head-nav .nav.data-v-1524273d {
@@ -94,7 +94,7 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 26rpx;
 }
 .index .head .head-nav .nav view.data-v-1524273d {
@@ -106,7 +106,7 @@
 }
 .index .head .head-nav .nav view.data-v-1524273d:nth-child(1)::before {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   bottom: -6rpx;
   width: 74rpx;
@@ -164,7 +164,7 @@
 .index .goods-style .style-container .style.data-v-1524273d {
   width: 229rpx;
   height: 142rpx;
-  background: #FFB6B3;
+  background: #ffb6b3;
   border-radius: 7rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -193,7 +193,7 @@
   -webkit-justify-content: space-between;
           justify-content: space-between;
   font-size: 20rpx;
-  color: #1D1D1D;
+  color: #1d1d1d;
   padding: 22rpx 0px 22rpx;
 }
 .index .goods-style .style-container .style .style-lr.data-v-1524273d {
@@ -230,7 +230,7 @@
   width: 100%;
   box-shadow: 0rpx 4rpx 11rpx 0rpx rgba(124, 124, 124, 0.22);
   border-radius: 0rpx 0rpx 7rpx 7rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .index .bag-hall .bag-container .bag-swiper.data-v-1524273d {
   width: 100%;
@@ -278,8 +278,8 @@
 .index .hot-selected .hot-container .hot.data-v-1524273d {
   width: 346rpx;
   height: 461rpx;
-  background-color: #FFFFFF;
-  border: 2rpx solid #F4F4F4;
+  background-color: #ffffff;
+  border: 2rpx solid #f4f4f4;
   box-sizing: border-box;
   padding: 0px 26rpx;
   font-size: 20rpx;
@@ -297,11 +297,11 @@
   text-align: center;
   height: 32rpx;
   width: 100%;
-  border-bottom: 2rpx solid #F4F4F4;
+  border-bottom: 2rpx solid #f4f4f4;
 }
 .index .hot-selected .hot-container .hot .hot-price.data-v-1524273d {
   margin-top: 30rpx;
-  color: #FF0000FF;
+  color: #ff0000ff;
   text-align: center;
 }
 
