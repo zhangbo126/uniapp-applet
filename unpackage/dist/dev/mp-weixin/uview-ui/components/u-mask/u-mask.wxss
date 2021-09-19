@@ -30,7 +30,7 @@
 /* 边框颜色 */
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
-.u-mask.data-v-4bfa3b00 {
+.u-mask.data-v-e46155ea {
   position: fixed;
   top: 0;
   left: 0;
@@ -42,10 +42,10 @@
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
 }
-.u-mask-show.data-v-4bfa3b00 {
+.u-mask-show.data-v-e46155ea {
   opacity: 1;
 }
-.u-mask-zoom.data-v-4bfa3b00 {
+.u-mask-zoom.data-v-e46155ea {
   -webkit-transform: scale(1.2, 1.2);
           transform: scale(1.2, 1.2);
 }

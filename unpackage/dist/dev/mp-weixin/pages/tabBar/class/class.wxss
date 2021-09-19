@@ -30,88 +30,88 @@
 /* 边框颜色 */
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
-.class-container.data-v-1d884e09 {
+.class-container.data-v-fa6aa8c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   background-color: #FFFFFF;
   height: 100%;
 }
-.class-container .nav-lf.data-v-1d884e09 {
-  width: 200rpx;
-  -webkit-flex-shrink: 0;
-          flex-shrink: 0;
-  height: 100%;
+.class-container .nav-lf.data-v-fa6aa8c4 {
+    width: 200rpx;
+    -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+    height: 100%;
 }
-.class-container .nav-lf .nav-item.data-v-1d884e09 {
-  width: 200rpx;
-  height: 128rpx;
-  background-color: #EDEDED;
-  text-align: center;
-  line-height: 128rpx;
-  font-size: 22rpx;
+.class-container .nav-lf .nav-item.data-v-fa6aa8c4 {
+      width: 200rpx;
+      height: 128rpx;
+      background-color: #EDEDED;
+      text-align: center;
+      line-height: 128rpx;
+      font-size: 22rpx;
 }
-.class-container .nav-lf .nav-active.data-v-1d884e09 {
-  background-color: #FFFFFF;
-  color: #FFB517FF;
+.class-container .nav-lf .nav-active.data-v-fa6aa8c4 {
+      background-color: #FFFFFF;
+      color: #FFB517FF;
 }
-.class-container .class-lr.data-v-1d884e09 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
-  overflow: hidden;
+.class-container .class-lr.data-v-fa6aa8c4 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    overflow: hidden;
 }
-.class-container .class-lr .lr-box.data-v-1d884e09 {
-  margin-bottom: 10rpx;
+.class-container .class-lr .lr-box.data-v-fa6aa8c4 {
+      margin-bottom: 10rpx;
 }
-.class-container .class-lr .lr-box .title.data-v-1d884e09 {
-  font-size: 22rpx;
-  height: 62rpx;
-  line-height: 62rpx;
-  text-align: center;
-  position: relative;
+.class-container .class-lr .lr-box .title.data-v-fa6aa8c4 {
+        font-size: 22rpx;
+        height: 62rpx;
+        line-height: 62rpx;
+        text-align: center;
+        position: relative;
 }
-.class-container .class-lr .lr-box .title.data-v-1d884e09::before {
-  content: '';
-  position: absolute;
-  top: 31rpx;
-  width: 100rpx;
-  height: 2rpx;
-  left: 110rpx;
-  background-color: #b9b9b9;
+.class-container .class-lr .lr-box .title.data-v-fa6aa8c4::before {
+          content: '';
+          position: absolute;
+          top: 31rpx;
+          width: 100rpx;
+          height: 2rpx;
+          left: 110rpx;
+          background-color: #b9b9b9;
 }
-.class-container .class-lr .lr-box .title.data-v-1d884e09::after {
-  content: '';
-  position: absolute;
-  top: 31rpx;
-  width: 100rpx;
-  height: 2rpx;
-  right: 110rpx;
-  background-color: #b9b9b9;
+.class-container .class-lr .lr-box .title.data-v-fa6aa8c4::after {
+          content: '';
+          position: absolute;
+          top: 31rpx;
+          width: 100rpx;
+          height: 2rpx;
+          right: 110rpx;
+          background-color: #b9b9b9;
 }
-.class-container .class-lr .lr-box .lr-item.data-v-1d884e09 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
+.class-container .class-lr .lr-box .lr-item.data-v-fa6aa8c4 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+                flex-wrap: wrap;
 }
-.class-container .class-lr .lr-box .lr-item .item.data-v-1d884e09 {
-  margin: 20rpx 0rpx;
-  padding: 0rpx 39rpx;
+.class-container .class-lr .lr-box .lr-item .item.data-v-fa6aa8c4 {
+          margin: 20rpx 0rpx;
+          padding: 0rpx 39rpx;
 }
-.class-container .class-lr .lr-box .lr-item .item .item-img.data-v-1d884e09 {
-  width: 106rpx;
-  height: 85rpx;
-  overflow: hidden;
+.class-container .class-lr .lr-box .lr-item .item .item-img.data-v-fa6aa8c4 {
+            width: 106rpx;
+            height: 85rpx;
+            overflow: hidden;
 }
-.class-container .class-lr .lr-box .lr-item .item .item-img image.data-v-1d884e09 {
-  width: 100%;
+.class-container .class-lr .lr-box .lr-item .item .item-img image.data-v-fa6aa8c4 {
+              width: 100%;
 }
-.class-container .class-lr .lr-box .lr-item .item .name.data-v-1d884e09 {
-  width: 106rpx;
-  line-height: 22rpx;
-  font-size: 22rpx;
-  text-align: center;
+.class-container .class-lr .lr-box .lr-item .item .name.data-v-fa6aa8c4 {
+            width: 106rpx;
+            line-height: 22rpx;
+            font-size: 22rpx;
+            text-align: center;
 }
 

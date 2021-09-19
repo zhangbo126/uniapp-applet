@@ -30,7 +30,7 @@
 /* 边框颜色 */
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
-.u-badge.data-v-2b1712d8 {
+.u-badge.data-v-4c0dd623 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: inline-flex;
@@ -45,34 +45,34 @@
   border-radius: 100rpx;
   z-index: 9;
 }
-.u-badge--bg--primary.data-v-2b1712d8 {
-  background-color: #2979ff;
+.u-badge--bg--primary.data-v-4c0dd623 {
+    background-color: #2979ff;
 }
-.u-badge--bg--error.data-v-2b1712d8 {
-  background-color: #fa3534;
+.u-badge--bg--error.data-v-4c0dd623 {
+    background-color: #fa3534;
 }
-.u-badge--bg--success.data-v-2b1712d8 {
-  background-color: #19be6b;
+.u-badge--bg--success.data-v-4c0dd623 {
+    background-color: #19be6b;
 }
-.u-badge--bg--info.data-v-2b1712d8 {
-  background-color: #909399;
+.u-badge--bg--info.data-v-4c0dd623 {
+    background-color: #909399;
 }
-.u-badge--bg--warning.data-v-2b1712d8 {
-  background-color: #ff9900;
+.u-badge--bg--warning.data-v-4c0dd623 {
+    background-color: #ff9900;
 }
-.u-badge-dot.data-v-2b1712d8 {
+.u-badge-dot.data-v-4c0dd623 {
   height: 16rpx;
   width: 16rpx;
   border-radius: 100rpx;
   line-height: 1;
 }
-.u-badge-mini.data-v-2b1712d8 {
+.u-badge-mini.data-v-4c0dd623 {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
   -webkit-transform-origin: center center;
           transform-origin: center center;
 }
-.u-info.data-v-2b1712d8 {
+.u-info.data-v-4c0dd623 {
   background-color: #909399;
   color: #fff;
 }

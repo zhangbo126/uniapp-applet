@@ -30,37 +30,37 @@
 /* 边框颜色 */
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
-view.data-v-3b2b1a80,
-scroll-view.data-v-3b2b1a80 {
+view.data-v-243f8ccb,
+scroll-view.data-v-243f8ccb {
   box-sizing: border-box;
 }
-.data-v-3b2b1a80::-webkit-scrollbar,.data-v-3b2b1a80::-webkit-scrollbar,.data-v-3b2b1a80::-webkit-scrollbar {
+.data-v-243f8ccb::-webkit-scrollbar,.data-v-243f8ccb::-webkit-scrollbar,.data-v-243f8ccb::-webkit-scrollbar {
   display: none;
   width: 0 !important;
   height: 0 !important;
   -webkit-appearance: none;
   background: transparent;
 }
-.u-scroll-box.data-v-3b2b1a80 {
+.u-scroll-box.data-v-243f8ccb {
   position: relative;
 }
-.u-scroll-view.data-v-3b2b1a80 {
+.u-scroll-view.data-v-243f8ccb {
   width: 100%;
   white-space: nowrap;
   position: relative;
 }
-.u-tab-item.data-v-3b2b1a80 {
+.u-tab-item.data-v-243f8ccb {
   position: relative;
   display: inline-block;
   text-align: center;
   -webkit-transition-property: background-color, color;
   transition-property: background-color, color;
 }
-.u-tab-bar.data-v-3b2b1a80 {
+.u-tab-bar.data-v-243f8ccb {
   position: absolute;
   bottom: 0;
 }
-.u-tabs-scorll-flex.data-v-3b2b1a80 {
+.u-tabs-scorll-flex.data-v-243f8ccb {
 
   display: -webkit-box;
   display: -webkit-flex;

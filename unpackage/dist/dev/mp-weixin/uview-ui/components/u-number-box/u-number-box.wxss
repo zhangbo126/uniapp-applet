@@ -30,7 +30,7 @@
 /* 边框颜色 */
 /* 图片加载中颜色 */
 /* 行为相关颜色 */
-.u-numberbox.data-v-a54b45c0 {
+.u-numberbox.data-v-65f9beab {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: inline-flex;
@@ -38,7 +38,7 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.u-number-input.data-v-a54b45c0 {
+.u-number-input.data-v-65f9beab {
   position: relative;
   text-align: center;
   padding: 0;
@@ -59,8 +59,8 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.u-icon-plus.data-v-a54b45c0,
-.u-icon-minus.data-v-a54b45c0 {
+.u-icon-plus.data-v-65f9beab,
+.u-icon-minus.data-v-65f9beab {
   width: 60rpx;
 
   display: -webkit-box;
@@ -78,17 +78,17 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.u-icon-plus.data-v-a54b45c0 {
+.u-icon-plus.data-v-65f9beab {
   border-radius: 0 8rpx 8rpx 0;
 }
-.u-icon-minus.data-v-a54b45c0 {
+.u-icon-minus.data-v-65f9beab {
   border-radius: 8rpx 0 0 8rpx;
 }
-.u-icon-disabled.data-v-a54b45c0 {
+.u-icon-disabled.data-v-65f9beab {
   color: #c8c9cc !important;
   background: #f7f8fa !important;
 }
-.u-input-disabled.data-v-a54b45c0 {
+.u-input-disabled.data-v-65f9beab {
   color: #c8c9cc !important;
   background-color: #f2f3f5 !important;
 }
