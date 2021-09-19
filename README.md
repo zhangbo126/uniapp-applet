@@ -17,8 +17,8 @@ UI:uview-ui
 #### 使用说明
 
 1.  utils.js下request.js文件
-2.  baseUrl 变量替换为 后台项目接口地址启动方式参照：[服务端](https://gitee.com/ZHANG_6666/express--vue3--ant-design2)
-3.  新增/修改商品后台操作：[管理平台](https://gitee.com/ZHANG_6666/crm-template)  
+2.  baseUrl 变量替换为服务端地址， 后台项目接口地址启动方式参照：[服务端https://gitee.com/ZHANG_6666/express--vue3--ant-design2](https://gitee.com/ZHANG_6666/express--vue3--ant-design2)
+3.  新增/修改商品后台操作参照：[管理平台https://gitee.com/ZHANG_6666/crm-template](https://gitee.com/ZHANG_6666/crm-template)  
 
 
 #### 界面
