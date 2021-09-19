@@ -1,4 +1,4 @@
-const baseUrl = 'https://dev.duobihouse.cn/'
+const baseUrl = 'http://192.168.3.18:99'
 
 
 const request = (method, url, data) => {
@@ -8,12 +8,12 @@ const request = (method, url, data) => {
 			method,
 			url: baseUrl + url,
 			data,
-			header: {
-				'x-requested-with': 'XMLHttpRequest', //请求方式xml
-				Authorization: 'Bearer ' + uni.getStorageSync('accessToken')
-			},
+			// header: {
+			// 	'x-requested-with': 'XMLHttpRequest', //请求方式xml
+			// 	Authorization: 'Bearer ' + uni.getStorageSync('accessToken')
+			// },
 			success(res) {
-				resolve(res)
+				resolve(res.data)
 			},
 			fail(err) {
 				resolve(err)
