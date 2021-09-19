@@ -17,9 +17,9 @@ UI:uview-ui
 #### 使用说明
 
 1.  utils.js下request.js文件
-2. ![输入图片说明](https://images.gitee.com/uploads/images/2021/0919/230654_19198971_5452088.png "屏幕截图.png")
-3. baseUrl 变量替换为 后台项目接口地址   
-4. 新增/修改商品后台操作
+2.  baseUrl 变量替换为 后台项目接口地址启动方式参照：[服务端](https://gitee.com/ZHANG_6666/express--vue3--ant-design2)
+3.  新增/修改商品后台操作：[管理平台](https://gitee.com/ZHANG_6666/crm-template)  
+
 
 #### 界面
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0919/230837_4d504162_5452088.png "屏幕截图.png")
