@@ -23,7 +23,7 @@ UI:uview-ui
 
 #### 界面
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0919/230837_4d504162_5452088.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0919/230855_43e5209c_5452088.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1001/114115_ce370daa_5452088.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1001/114010_964584cc_5452088.png "屏幕截图.png")
 
 
