@@ -90,7 +90,7 @@
 		<view class="hot-selected">
 			<view class="hot-title"> 热门精选 </view>
 			<view class="hot-container">
-				<view class="hot" v-for="(hot, index) in goodsList" :key="index" @click="goDetail()">
+				<view class="hot" v-for="(hot, index) in goodsList" :key="index" @click="goDetail(hot._id)">
 					<view class="hot-img">
 						<image :src="hot.designSketch[0]" mode="widthFix"></image>
 					</view>
@@ -138,9 +138,9 @@
 		},
 		methods: {
 			//跳转详情
-			goDetail() {
+			goDetail(id) {
 				uni.navigateTo({
-					url: "/pages/goodsDetail/goodsDetail",
+					url:`/pages/goodsDetail/goodsDetail?id=${id}`,
 				});
 			},
 			//获取分类

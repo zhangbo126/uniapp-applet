@@ -11,15 +11,15 @@
 		<scroll-view scroll-y="true" id="scroll-box" :style="{height:scrollHeight}" @scroll="onScroll" :scroll-into-view="scrollViewId">
 			<view class="goods" id="scroll0">
 				<view class="swiper-item goods-swiper">
-					<u-swiper mode="number" border-radius="0" height="570" :list="goodsList"></u-swiper>
+					<u-swiper mode="number" border-radius="0" height="570" :list="goodsDetailInfo.designSketch"></u-swiper>
 				</view>
 				<view class="goods-desc">
 					<view class="goods-price">
-						￥1800.00
+						￥{{goodsDetailInfo.price | priceValue}}
 					</view>
 					<view class="goods-txt">
-						<text>欧池 </text>
-						<text>北欧简约布艺沙发组合可拆洗三人位沙发北欧简约布艺沙发组合可拆洗三人位沙发</text>
+						<text>{{goodsDetailInfo.goodsName}} </text>
+						<text>{{goodsDetailInfo.skuName}}</text>
 					</view>
 				</view>
 			</view>
@@ -33,16 +33,16 @@
 				</view>
 				<view class="option-list" @click="showPickerAddr=true">
 					<view class="lable">送至</view>
-					
+
 					<view class="content">{{addressTxt.province.label}} {{addressTxt.city.label}} {{addressTxt.area.label}}</view>
 					<view class="more">
 						<u-icon name="more-dot-fill" color="#B5B5B5FF" size="34"></u-icon>
 					</view>
 				</view>
-				<view class="option-list" >
+				<view class="option-list">
 					<view class="lable">服务</view>
 					<view class="content">送货入户并安装</view>
-					
+
 				</view>
 			</view>
 			<view class="service">
@@ -70,7 +70,7 @@
 				</view>
 				<view class="info-content">
 					<view class="info-img" v-if="tabInfoIndex==0">
-						<rich-text class="rich" :nodes="richHtml"></rich-text>
+						<rich-text class="rich" :nodes="goodsDetailInfo.mixDetail"></rich-text>
 					</view>
 					<view class="info-parameter" v-if="tabInfoIndex==1">
 						<view class="basic-parame">
@@ -80,19 +80,19 @@
 							<view class="basic-box">
 								<view class="box-item br-bottom">
 									<view class="lable">品牌</view>
-									<view class="item">极之美</view>
+									<view class="item">{{goodsDetailInfo.brandName}}</view>
 								</view>
 								<view class="box-item br-bottom">
 									<view class="lable">商品名称</view>
-									<view class="item">1.4米气压高箱实木床</view>
+									<view class="item">{{goodsDetailInfo.skuName}}</view>
 								</view>
 								<view class="box-item br-bottom">
 									<view class="lable">规格货号</view>
-									<view class="item">MC-1231</view>
+									<view class="item">{{goodsDetailInfo.goodsNo}}</view>
 								</view>
 								<view class="box-item br-bottom">
-									<view class="lable">商品系列</view>
-									<view class="item">北欧系列</view>
+									<view class="lable">商品分类</view>
+									<view class="item">{{goodsDetailInfo.categoryName}}</view>
 								</view>
 								<view class="box-item br-bottom">
 									<view class="lable">商品风格</view>
@@ -104,7 +104,7 @@
 								</view>
 								<view class="box-item br-bottom">
 									<view class="lable">商品尺寸</view>
-									<view class="item">2232mm*2343mm*1100mm</view>
+									<view class="item">{{goodsDetailInfo.mixLength}}mm*{{goodsDetailInfo.mixWidth}}mm*{{goodsDetailInfo.mixHeight}}mm</view>
 								</view>
 								<view class="box-item">
 									<view class="lable">商品材质</view>
@@ -139,7 +139,7 @@
 		</scroll-view>
 		<!-- 底部操作菜单 -->
 		<view class="page-bottom">
-			<navigator url="/pages/tabBar/index/index" open-type="switchTab"  class="p-b-btn">
+			<navigator url="/pages/tabBar/index/index" open-type="switchTab" class="p-b-btn">
 				<u-icon name="home-fill"></u-icon>
 				<text>首页</text>
 			</navigator>
@@ -218,7 +218,8 @@
 		</uni-popup>
 		<!-- 省市区选择 -->
 
-		<u-picker mode="region" @confirm="onConfirm" :area-code='[ addressTxt.province.value, addressTxt.city.value,addressTxt.area.value]' v-model="showPickerAddr"></u-picker>
+		<u-picker mode="region" @confirm="onConfirm" :area-code='[ addressTxt.province.value, addressTxt.city.value,addressTxt.area.value]'
+		 v-model="showPickerAddr"></u-picker>
 	</view>
 </template>
 
@@ -236,16 +237,7 @@
 
 		}
 	]
-	const goodsList = [{
-			image: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/891f5766c9874480b1f6f019e5879e69.jpg',
-		},
-		{
-			image: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/c416e4bb69194cb2b2b1ab6e1f1c24f3.jpg',
-		},
-		{
-			image: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/1461959d0d0f467281037526f47c4c4f.jpg',
-		}
-	]
+
 
 	const colorItem = [{
 			name: '湖水蓝',
@@ -267,14 +259,7 @@
 			name: '湖水蓝',
 			id: 5,
 		},
-		{
-			name: '湖水蓝',
-			id: 6,
-		},
-		{
-			name: '湖水蓝',
-			id: 7,
-		},
+		
 	]
 
 	const mixItem = [{
@@ -324,12 +309,13 @@
 			path: 'https://www.duobihouse.com/fileSure/2021/4/28/image/1/de1fd857581f47efa9e27b60bc8557c9.jpg'
 		},
 	]
-
+	import {
+		getGoodsDetailsInfo
+	} from '@/api/goodsDetail.js'
 	export default {
 		data() {
 			return {
 				tabList,
-				goodsList,
 				colorItem,
 				mixItem,
 				recommList,
@@ -354,45 +340,51 @@
 				addressTxt: {
 					area: {
 						value: '110101',
-						label:'东城区'
+						label: '东城区'
 					},
 					city: {
 						value: '1101',
-						label:'市辖区'
+						label: '市辖区'
 					},
 					province: {
 						value: '11',
-						label:'北京市'
+						label: '北京市'
 					}
-				}
+				},
+				goodsDetailInfo: {}
 			};
 		},
+		onLoad(option) {
 
-		mounted() {
-			//在富文本框内容渲染完成之后 获取元素距离顶部高度
-			this.imgAddMaxWidth(this.richHtml).then(res => {
-				this.richHtml = res
-			}).then(() => {
-				//获取 商品 + 详情 + 推荐 初始化时距离顶部的位置
-				this.$nextTick(() => {
-					// console.log(this.$refs.scroll1.$el.getBoundingClientRect())
-					const query = uni.createSelectorQuery().in(this);
-					for (let i = 0; i <= 2; i++) {
-						query.select(`#scroll${i}`).boundingClientRect(data => {
-							this.scrollTopInfo[`scroll${i}`] = data.top - 60
-						}).exec();
-					}
-				})
+			getGoodsDetailsInfo({
+				id: option.id
+			}).then(res => {
+				if (res.code == 1) {
+					this.goodsDetailInfo = res.data
+					//在富文本框内容渲染完成之后 获取元素距离顶部高度
+					this.imgAddMaxWidth(this.goodsDetailInfo.mixDetail).then(res => {
+						this.goodsDetailInfo.mixDetail = res
+					}).then(() => {
+						//获取 商品 + 详情 + 推荐 初始化时距离顶部的位置
+						this.$nextTick(() => {
+							// console.log(this.$refs.scroll1.$el.getBoundingClientRect())
+							const query = uni.createSelectorQuery().in(this);
+							for (let i = 0; i <= 2; i++) {
+								query.select(`#scroll${i}`).boundingClientRect(data => {
+									this.scrollTopInfo[`scroll${i}`] = data.top - 60
+								}).exec();
+							}
+						})
+					})
+				}
 			})
-
-
 		},
-
+	
 		methods: {
 			/*省市区选择*/
 			onConfirm(e) {
-                Object.assign(this.addressTxt,e)
-				
+				Object.assign(this.addressTxt, e)
+
 			},
 			onClickColor(color, index) {
 				this.colorIndex = index
@@ -421,7 +413,7 @@
 						return "";
 					}
 					let regex = new RegExp("/>", "gi");
-					let resStr = str.replace(regex, " style='max-width: 100%;'/>");
+					let resStr = str.replace(regex, " style='max-width:100%;height:auto'/>");
 					reslove(resStr)
 
 				})

@@ -113,12 +113,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var f0 = _vm._f("priceValue")(_vm.goodsDetailInfo.price)
+
   var l0 = _vm.__map(_vm.recommList, function(recomm, __i0__) {
-    var f0 = _vm._f("priceValue")(recomm.price)
+    var f1 = _vm._f("priceValue")(recomm.price)
 
     return {
       $orig: _vm.__get_orig(recomm),
-      f0: f0
+      f1: f1
     }
   })
 
@@ -132,6 +134,7 @@ var render = function() {
     {},
     {
       $root: {
+        f0: f0,
         l0: l0
       }
     }
@@ -169,468 +172,546 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var tabList = [{
-  name: '商品' },
-
-
-{
-  name: '详情' },
-
-
-{
-  name: '推荐' }];
-
-
-
-var goodsList = [{
-  image: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/891f5766c9874480b1f6f019e5879e69.jpg' },
-
-{
-  image: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/c416e4bb69194cb2b2b1ab6e1f1c24f3.jpg' },
-
-{
-  image: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/1461959d0d0f467281037526f47c4c4f.jpg' }];
-
-
-
-var colorItem = [{
-  name: '湖水蓝',
-  id: 1 },
-
-{
-  name: '静谧灰',
-  id: 2 },
-
-{
-  name: '活力黄',
-  id: 3 },
-
-{
-  name: '湖水蓝',
-  id: 4 },
-
-{
-  name: '湖水蓝',
-  id: 5 },
-
-{
-  name: '湖水蓝',
-  id: 6 },
-
-{
-  name: '湖水蓝',
-  id: 7 }];
-
-
-
-var mixItem = [{
-  name: '单人位（0.8米）',
-  id: 1 },
-
-{
-  name: '三人位（1.8米）',
-  id: 2 },
-
-{
-  name: '三人位（1.26米）+ 脚踏',
-  id: 3 },
-
-{
-  name: '四人位（1.26米）+ 脚踏',
-  id: 4 }];
-
-
-
-var recommList = [{
-  name: '生活例子家居悦物系列现代轻奢北欧风格皮沙发客厅 三人位沙发',
-  mixName: '三人位沙发',
-  sky: '1',
-  price: 322,
-  path: 'https://www.duobihouse.com/fileSure/2020/9/7/image/1/59cdbd2486d0428089db097b05e7d9f1.jpg' },
-
-{
-  name: '实木沙发 原木色单人位沙发',
-  mixName: '原木色单人位沙发',
-  sky: '2',
-  price: 3232,
-  path: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/c416e4bb69194cb2b2b1ab6e1f1c24f3.jpg' },
-
-{
-  name: '日月鑫家具超凡大师时尚卧室科技布软床 1.8米科技布床',
-  mixName: '1.8米科技布床',
-  sky: '3',
-  price: 5422,
-  path: 'https://www.duobihouse.com/fileSure/2021/8/2/image/1/77aed1c3d96d4945b6f1f99d0b19e6d2.jpg' },
-
-{
-  name: '优家家具现代简约卧室组合（床+床头柜）实木卧室 1.8米床★',
-  mixName: '1.8米床★',
-  sky: '4',
-  price: 5322,
-  path: 'https://www.duobihouse.com/fileSure/2021/4/28/image/1/de1fd857581f47efa9e27b60bc8557c9.jpg' }];var _default =
-
-
-
-{
-  data: function data() {
-    return {
-      tabList: tabList,
-      goodsList: goodsList,
-      colorItem: colorItem,
-      mixItem: mixItem,
-      recommList: recommList,
-      showPickerAddr: false,
-      current: 0,
-      colorIndex: 0,
-      mixIndex: 0,
-      richHtml: '<p style=\"text-align: center;\"><img src=\"https://www.duobihouse.com/fileUEditor/upload/image/20210731/6376334413454683059410276.jpg\" title=\"R-B-9016.jpg\" alt=\"R-B-9016.jpg\"/></p>',
-      tabInfoIndex: 0,
-      scrollViewId: 'scroll0',
-      scrollHeight: '600px',
-      scrollTopInfo: {
-        scroll0: 0,
-        scroll1: 0,
-        scroll2: 0 },
-
-      selectTxt: {
-        colorTxt: '湖水蓝',
-        mixTxt: '单人位（0.8米）',
-        numTxt: 1 },
-
-      addressTxt: {
-        area: {
-          value: '110101',
-          label: '东城区' },
-
-        city: {
-          value: '1101',
-          label: '市辖区' },
-
-        province: {
-          value: '11',
-          label: '北京市' } } };
-
-
-
-  },
-
-  mounted: function mounted() {var _this = this;
-    //在富文本框内容渲染完成之后 获取元素距离顶部高度
-    this.imgAddMaxWidth(this.richHtml).then(function (res) {
-      _this.richHtml = res;
-    }).then(function () {
-      //获取 商品 + 详情 + 推荐 初始化时距离顶部的位置
-      _this.$nextTick(function () {
-        // console.log(this.$refs.scroll1.$el.getBoundingClientRect())
-        var query = uni.createSelectorQuery().in(_this);var _loop = function _loop(
-        i) {
-          query.select("#scroll".concat(i)).boundingClientRect(function (data) {
-            _this.scrollTopInfo["scroll".concat(i)] = data.top - 60;
-          }).exec();};for (var i = 0; i <= 2; i++) {_loop(i);
-        }
-      });
-    });
-
-
-  },
-
-  methods: {
-    /*省市区选择*/
-    onConfirm: function onConfirm(e) {
-      Object.assign(this.addressTxt, e);
-
-    },
-    onClickColor: function onClickColor(color, index) {
-      this.colorIndex = index;
-      this.selectTxt.colorTxt = color.name + ' , ';
-    },
-    onClickMix: function onClickMix(mix, index) {
-      this.mixIndex = index;
-      this.selectTxt.mixTxt = mix.name + ' , ';
-    },
-    openGoodsPopup: function openGoodsPopup() {
-      this.$refs.popup.open('bottom');
-    },
-    cloneGoodsPopup: function cloneGoodsPopup() {
-      this.$refs.popup.close();
-    },
-    onChangeTabs: function onChangeTabs(e) {
-      this.current = e;
-      this.scrollViewId = "scroll".concat(e);
-    },
-    onChangeInfo: function onChangeInfo(i) {
-      this.tabInfoIndex = i;
-    },
-    imgAddMaxWidth: function imgAddMaxWidth(str) {
-      return new Promise(function (reslove, reject) {
-        if (!str) {
-          return "";
-        }
-        var regex = new RegExp("/>", "gi");
-        var resStr = str.replace(regex, " style='max-width: 100%;'/>");
-        reslove(resStr);
-
-      });
-    },
-    onScroll: function onScroll(e) {
-      var top = e.detail.scrollTop;var _this$scrollTopInfo =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
 
-      this.scrollTopInfo,scroll0 = _this$scrollTopInfo.scroll0,scroll1 = _this$scrollTopInfo.scroll1,scroll2 = _this$scrollTopInfo.scroll2;
-      if (top >= scroll0) {
-        this.current = 0;
-      }
-      if (top >= scroll1) {
-        this.current = 1;
-      }
-      if (top >= scroll2) {
-        this.current = 2;
-      }
-      console.log('位置打印', top, scroll0, scroll1, scroll2);
 
 
-    },
-    onBuy: function onBuy() {
-      uni.showToast({
-        title: '点击了立即购买' });
-
-    },
-    onAddCart: function onAddCart() {var _this2 = this;
-      uni.showToast({
-        title: '添加成功',
-        success: function success() {
-          _this2.$refs.popup.close();
-        } });
 
 
-    } } };exports.default = _default;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _goodsDetail = __webpack_require__(/*! @/api/goodsDetail.js */ 169); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var tabList = [{ name: '商品' }, { name: '详情' }, { name: '推荐' }];var colorItem = [{ name: '湖水蓝', id: 1 }, { name: '静谧灰', id: 2 }, { name: '活力黄', id: 3 }, { name: '湖水蓝', id: 4 }, { name: '湖水蓝', id: 5 }];var mixItem = [{ name: '单人位（0.8米）', id: 1 }, { name: '三人位（1.8米）', id: 2 }, { name: '三人位（1.26米）+ 脚踏', id: 3 }, { name: '四人位（1.26米）+ 脚踏', id: 4 }];var recommList = [{ name: '生活例子家居悦物系列现代轻奢北欧风格皮沙发客厅 三人位沙发', mixName: '三人位沙发', sky: '1', price: 322, path: 'https://www.duobihouse.com/fileSure/2020/9/7/image/1/59cdbd2486d0428089db097b05e7d9f1.jpg' }, { name: '实木沙发 原木色单人位沙发', mixName: '原木色单人位沙发', sky: '2', price: 3232, path: 'https://www.duobihouse.com/fileSure/2020/11/20/image/1/c416e4bb69194cb2b2b1ab6e1f1c24f3.jpg' }, { name: '日月鑫家具超凡大师时尚卧室科技布软床 1.8米科技布床', mixName: '1.8米科技布床', sky: '3', price: 5422, path: 'https://www.duobihouse.com/fileSure/2021/8/2/image/1/77aed1c3d96d4945b6f1f99d0b19e6d2.jpg' }, { name: '优家家具现代简约卧室组合（床+床头柜）实木卧室 1.8米床★', mixName: '1.8米床★', sky: '4', price: 5322, path: 'https://www.duobihouse.com/fileSure/2021/4/28/image/1/de1fd857581f47efa9e27b60bc8557c9.jpg' }];var _default = { data: function data() {return { tabList: tabList, colorItem: colorItem, mixItem: mixItem, recommList: recommList, showPickerAddr: false, current: 0, colorIndex: 0, mixIndex: 0, richHtml: '<p style=\"text-align: center;\"><img src=\"https://www.duobihouse.com/fileUEditor/upload/image/20210731/6376334413454683059410276.jpg\" title=\"R-B-9016.jpg\" alt=\"R-B-9016.jpg\"/></p>', tabInfoIndex: 0, scrollViewId: 'scroll0', scrollHeight: '600px', scrollTopInfo: { scroll0: 0, scroll1: 0, scroll2: 0 }, selectTxt: { colorTxt: '湖水蓝', mixTxt: '单人位（0.8米）', numTxt: 1 }, addressTxt: { area: { value: '110101', label: '东城区' }, city: { value: '1101', label: '市辖区' }, province: { value: '11', label: '北京市' } }, goodsDetailInfo: {} };}, onLoad: function onLoad(option) {var _this = this;(0, _goodsDetail.getGoodsDetailsInfo)({ id: option.id }).then(function (res) {if (res.code == 1) {_this.goodsDetailInfo = res.data; //在富文本框内容渲染完成之后 获取元素距离顶部高度
+        _this.imgAddMaxWidth(_this.goodsDetailInfo.mixDetail).then(function (res) {_this.goodsDetailInfo.mixDetail = res;}).then(function () {//获取 商品 + 详情 + 推荐 初始化时距离顶部的位置
+          _this.$nextTick(function () {// console.log(this.$refs.scroll1.$el.getBoundingClientRect())
+            var query = uni.createSelectorQuery().in(_this);var _loop = function _loop(i) {query.select("#scroll".concat(i)).boundingClientRect(function (data) {_this.scrollTopInfo["scroll".concat(i)] = data.top - 60;}).exec();};for (var i = 0; i <= 2; i++) {_loop(i);}});});}});}, methods: { /*省市区选择*/onConfirm: function onConfirm(e) {Object.assign(this.addressTxt, e);}, onClickColor: function onClickColor(color, index) {this.colorIndex = index;this.selectTxt.colorTxt = color.name + ' , ';}, onClickMix: function onClickMix(mix, index) {this.mixIndex = index;this.selectTxt.mixTxt = mix.name + ' , ';}, openGoodsPopup: function openGoodsPopup() {this.$refs.popup.open('bottom');}, cloneGoodsPopup: function cloneGoodsPopup() {this.$refs.popup.close();}, onChangeTabs: function onChangeTabs(e) {this.current = e;this.scrollViewId = "scroll".concat(e);}, onChangeInfo: function onChangeInfo(i) {this.tabInfoIndex = i;}, imgAddMaxWidth: function imgAddMaxWidth(str) {return new Promise(function (reslove, reject) {if (!str) {return "";}var regex = new RegExp("/>", "gi");var resStr = str.replace(regex, " style='max-width:100%;height:auto'/>");reslove(resStr);});}, onScroll: function onScroll(e) {var top = e.detail.scrollTop;var _this$scrollTopInfo = this.scrollTopInfo,scroll0 = _this$scrollTopInfo.scroll0,scroll1 = _this$scrollTopInfo.scroll1,scroll2 = _this$scrollTopInfo.scroll2;if (top >= scroll0) {this.current = 0;}if (top >= scroll1) {this.current = 1;}if (top >= scroll2) {this.current = 2;}console.log('位置打印', top, scroll0, scroll1, scroll2);}, onBuy: function onBuy() {uni.showToast({ title: '点击了立即购买' });}, onAddCart: function onAddCart() {var _this2 = this;uni.showToast({ title: '添加成功', success: function success() {_this2.$refs.popup.close();} });} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -276,9 +276,9 @@ var classBgcolor = ["#FFB6B3", "#FFE566", "#A7FFDD", "#9AD6FF", "#61D6C9", "#A5F
 
   methods: {
     //跳转详情
-    goDetail: function goDetail() {
+    goDetail: function goDetail(id) {
       uni.navigateTo({
-        url: "/pages/goodsDetail/goodsDetail" });
+        url: "/pages/goodsDetail/goodsDetail?id=".concat(id) });
 
     },
     //获取分类
