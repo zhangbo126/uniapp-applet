@@ -9,9 +9,8 @@ function email(value) {
  * 验证手机格式
  */
 function mobile(value) {
-	return /^1[23456789]\d{9}$/.test(value)
+	return /^1[3-9]\d{9}$/.test(value)
 }
-
 
 /**
  * 验证URL格式
@@ -52,7 +51,8 @@ function digits(value) {
  * 验证身份证号码
  */
 function idCard(value) {
-	return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(value)
+	return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(
+		value)
 }
 
 /**

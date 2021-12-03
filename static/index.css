@@ -1,9 +1,0 @@
-.show-loading {
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	bottom: 0;
-	left: 0;
-	background-color: #FFFFFF;
-	z-index: 2021;
-}

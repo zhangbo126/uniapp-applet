@@ -173,6 +173,7 @@
 					}
 				}
 				// 发出change事件
+			
 				this.handleChange(value, 'change');
 			}
 		},
