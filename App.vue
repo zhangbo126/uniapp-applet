@@ -30,7 +30,7 @@
 </script>
 
 <style lang='scss'>
-	@import "uview-ui/index.scss";
+	@import '@/uni_modules/uview-ui/theme.scss';
 	/*
 		全局公共样式和字体图标
 	*/
