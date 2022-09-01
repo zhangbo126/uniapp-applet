@@ -2,7 +2,7 @@
 	<view class="content">
 		<scroll-view scroll-y class="left-aside">
 			<view v-for="(item,index) in classList" :key="item.id" class="f-item b-b" :class="{active: index === navActiveIndex}"
-			 @click="tabtap(item,index)">
+			 @click="()=>tabtap(item,index)">
 				{{item.name}}
 			</view>
 		</scroll-view>
@@ -52,7 +52,7 @@
 			},
 
 			//一级分类点击
-			tabtap(item, index) {
+			tabtap(item,index) {
 				this.navScrollTop = item.top
 				this.navActiveIndex = index
 			},

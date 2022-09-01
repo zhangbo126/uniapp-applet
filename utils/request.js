@@ -1,6 +1,5 @@
 
-const baseUrl ="http://192.168.3.18:99"
-
+const baseUrl = process.uniEnv.baseUrl
 const request = (method, url, data) => {
 	return new Promise((reslove, reject) => {
 		uni.request({
