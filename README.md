@@ -4,8 +4,8 @@
 基于uni-app开发的电商小程序
 
 #### 软件架构
-语言:uni-app
-UI:uview-ui
+###### 语言:uni-app 
+###### UI:uview-ui2.0
 
 
 #### 使用说明
@@ -16,7 +16,7 @@ UI:uview-ui
 ##### 3.管理端后台系统操作参照：[管理平台https://gitee.com/ZHANG_6666/crm-template](https://gitee.com/ZHANG_6666/crm-template)  
 
 
-##### 界面
+##### 4.界面
 ![输入图片说明](public/image/wx_1.png)
 ![输入图片说明](public/image/wx_2.png)
 ![输入图片说明](public/image/wx_3.png)
