@@ -2,16 +2,16 @@
 	<div class="register">
 		<u-form :model="form" ref="uForm" :rule="rules">
 			<u-form-item :label-width="140" label="账号" prop="userAccount">
-				<u-input placeholder="请输入账号" v-model.trim="form.userAccount" />
+				<u-input placeholder="请输入账号" v-model="form.userAccount" />
 			</u-form-item>
 			<u-form-item :label-width="140" label="联系方式" prop="phone">
-				<u-input placeholder="请输入联系方式" type="number" v-model.trim="form.phone" />
+				<u-input placeholder="请输入联系方式" type="number" v-model="form.phone" />
 			</u-form-item>
 			<u-form-item :label-width="140" label="密码" prop="passWord">
-				<u-input placeholder="请输入密码" type="password" v-model.trim="form.passWord" />
+				<u-input placeholder="请输入密码" type="password" v-model="form.passWord" />
 			</u-form-item>
 			<u-form-item :label-width="140" label="确认密码" prop="okPass">
-				<u-input v-model.trim="form.okPass" type="password" placeholder="请输入确认密码" />
+				<u-input v-model="form.okPass" type="password" placeholder="请输入确认密码" />
 			</u-form-item>
 			<u-form-item label="" :border-bottom="false">
 				<u-button type="success" :style="{width:'100%'}" @click="submit">注册</u-button>

@@ -18,7 +18,7 @@
 
 		<view class="goods-section">
 			<view class="g-header b-b">
-				
+
 			</view>
 			<!-- 商品列表 -->
 			<view class="g-item" v-for="order in orderList" :key="order._id">
@@ -143,26 +143,28 @@
 					}
 				],
 				addressData: {
-				
+
 				},
 				orderList: [],
-				couponPrice:0,
+				couponPrice: 0,
 				goodsTotalMoney: 0
 			}
 		},
+
 		onLoad(option) {
 			//商品数据
-			this.orderList = JSON.parse(option.data)
-
+			const eventChannel = this.getOpenerEventChannel()
+			eventChannel.on('createOrder',(data)=>{
+			   this.orderList=data 
+			})
 			this.orderList.forEach(v => {
 				this.goodsTotalMoney += v.price * v.num
 			})
-			
-			
+
 			let addr = uni.getStorageSync('ADDRESS_INFO') || []
-			this.addressData =addr.find(v=>v.default) || {}
-			
-			
+			this.addressData = addr.find(v => v.default) || {}
+
+
 		},
 		methods: {
 			//显示优惠券面板
@@ -174,9 +176,9 @@
 					this.maskState = state;
 				}, timer)
 			},
-			onChangeCoupon(item){
-				 this.maskState=0
-				 this.couponPrice= item.price
+			onChangeCoupon(item) {
+				this.maskState = 0
+				this.couponPrice = item.price
 			},
 			numberChange(data) {
 				this.number = data.number;

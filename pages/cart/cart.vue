@@ -5,7 +5,8 @@
 			<image src="/static/emptyCart.jpg" mode="aspectFit"></image>
 			<view v-if="userInfo.token" class="empty-tips">
 				空空如也
-				<navigator class="navigator" v-if="userInfo.token" url="../index/index" open-type="switchTab">随便逛逛></navigator>
+				<navigator class="navigator" v-if="userInfo.token" url="../index/index" open-type="switchTab">随便逛逛>
+				</navigator>
 			</view>
 			<view v-else class="empty-tips">
 				空空如也
@@ -18,15 +19,17 @@
 				<block v-for="(item, index) in cartList" :key="item._id">
 					<view class="cart-item" :class="{ 'b-b': index !== cartList.length - 1 }">
 						<view class="image-wrapper">
-							<image :src="item.imageFilePath"  mode="aspectFill" lazy-load></image>
-							
-							<view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }" @click="check('item', index)"></view>
+							<image :src="item.imageFilePath" mode="aspectFill" lazy-load></image>
+
+							<view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }"
+								@click="check('item', index)"></view>
 						</view>
 						<view class="item-right">
 							<text class="clamp title">{{ item.skuName }}</text>
 							<text class="attr"> {{ item.goodsName }}</text>
 							<text class="price">¥{{ item.price }}</text>
-							<u-number-box class="step" :min="1" :max="99" v-model="item.num" @change="numberChange(item)"></u-number-box>
+							<u-number-box class="step" :min="1" :max="99" v-model="item.num"
+								@change="numberChange(item)"></u-number-box>
 						</view>
 						<text class="del-btn yticon icon-fork" @click="deleteCartItem(index,item._id)"></text>
 					</view>
@@ -35,7 +38,8 @@
 			<!-- 底部菜单栏 -->
 			<view class="action-section">
 				<view class="checkbox">
-					<image :src="allChecked ? '/static/selected.png' : '/static/select.png'" mode="aspectFit" @click="check('all')"></image>
+					<image :src="allChecked ? '/static/selected.png' : '/static/select.png'" mode="aspectFit"
+						@click="check('all')"></image>
 					<view class="clear-btn" :class="{ show: allChecked }" @click="clearCart">
 						清空
 					</view>
@@ -60,7 +64,6 @@
 	import {
 		mapState
 	} from "vuex";
-	import uniNumberBox from "@/components/uni-number-box.vue";
 	import {
 		getCartList,
 		addCart,
@@ -68,9 +71,7 @@
 	}
 	from "@/api/user.js"
 	export default {
-		components: {
-			uniNumberBox,
-		},
+	
 		data() {
 			return {
 				total: 0, //总价格
@@ -95,21 +96,18 @@
 			})
 		},
 		onShow() {
-			this.allChecked=false
-			this.$nextTick(()=>{
+			this.allChecked = false
+			this.$nextTick(() => {
 				this.getList()
 			})
 		},
 		methods: {
-			getList() {
+			async getList() {
 				const userId = this.userInfo._id
-				getCartList({
-					userId
-				}).then(res => {
-					this.cartList = res.data || []
-					this.cartList.forEach(v=>{
-						  v.imageFilePath = v.designSketch[0]
-					})
+				const {data} = await getCartList({userId})
+				this.cartList = data || []
+				this.cartList.forEach(v => {
+					v.imageFilePath = v.designSketch[0]
 				})
 			},
 			//请求数据
@@ -160,7 +158,7 @@
 				let list = this.cartList;
 				delCart({
 					idList: [_id],
-					userId:this.userInfo._id
+					userId: this.userInfo._id
 				}).then(res => {
 					if (res.code != 1) {
 						return
@@ -178,19 +176,19 @@
 					content: "清空购物车？",
 					success: (e) => {
 						if (e.confirm) {
-							
+
 							const idList = this.cartList.map(v => v._id)
-							
+
 							delCart({
 								idList,
-								userId:this.userInfo._id
+								userId: this.userInfo._id
 							}).then(res => {
 								if (res.code != 1) {
 									return
 								}
-								this.cartList=[]
+								this.cartList = []
 								this.calcTotal();
-								
+
 							})
 						}
 					},
@@ -217,20 +215,26 @@
 			},
 			//创建订单
 			createOrder() {
-				let goods = this.cartList.filter((v)=>v.checked)
-				if(goods.length==0){
+				let goods = this.cartList.filter((v) => v.checked)
+				if (goods.length == 0) {
 					return uni.showToast({
-						icon:'none',
-						title:'请选择要结算的商品'
+						icon: 'none',
+						title: '请选择要结算的商品'
 					})
 				}
-			   
 
 				uni.navigateTo({
-					url: `/pages/order/createOrder?data=${JSON.stringify(goods)}`,
+					url: `/pages/order/createOrder`,
+					events: {
+						createOrder: (data) => {
+							console.log(data)
+						}
+					},
+					success(res) {
+						res.eventChannel.emit('createOrder', goods)
+					}
 				});
-				
-				
+
 			},
 		},
 	};

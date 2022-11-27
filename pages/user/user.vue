@@ -4,7 +4,7 @@
 			<image class="bg" src="/static/user-bg.jpg"></image>
 			<view class="user-info-box">
 				<view class="portrait-box">
-					<image class="portrait" :src="userInfo.token? '/static/avatar.jpg':'/static/missing-face.png'" ></image>
+					<image class="portrait" :src="userInfo.token? 'https://portrait.gitee.com/uploads/avatars/user/1817/5452088_ZHANG_6666_1627609275.png!avatar200':'/static/missing-face.png'" ></image>
 				</view>
 				<view class="info-box">
 					<text class="username">{{ userInfo.userAccount || "游客" }}</text>
