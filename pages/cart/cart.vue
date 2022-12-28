@@ -20,16 +20,13 @@
 					<view class="cart-item" :class="{ 'b-b': index !== cartList.length - 1 }">
 						<view class="image-wrapper">
 							<image :src="item.imageFilePath" mode="aspectFill" lazy-load></image>
-
-							<view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }"
-								@click="check('item', index)"></view>
+							<view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }"@click="check('item', index)"></view>		
 						</view>
 						<view class="item-right">
 							<text class="clamp title">{{ item.skuName }}</text>
 							<text class="attr"> {{ item.goodsName }}</text>
 							<text class="price">¥{{ item.price }}</text>
-							<u-number-box class="step" :min="1" :max="99" v-model="item.num"
-								@change="numberChange(item)"></u-number-box>
+							<u-number-box class="step" :min="1" :max="99" v-model="item.num" @change="numberChange(item)"></u-number-box>			
 						</view>
 						<text class="del-btn yticon icon-fork" @click="deleteCartItem(index,item._id)"></text>
 					</view>

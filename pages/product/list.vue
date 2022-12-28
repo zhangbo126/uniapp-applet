@@ -14,7 +14,6 @@
 					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="yticon icon-shang xia"></text>
 				</view>
 			</view>
-
 		</view>
 		<view class="goods-list">
 			<view v-for="(item, index) in goodsList" :key="index" class="goods-item" @click="navToDetailPage(item)">
@@ -26,25 +25,22 @@
 					<text class="price">{{item.price}}</text>
 					<text>已售 {{item.salesVolume}}</text>
 				</view>
-			</view>		
+			</view>
 			<u-empty v-if="goodsList.length==0" text="当前分类下暂无商品~~" mode="list"></u-empty>
 		</view>
-	
+
 	</view>
 </template>
 
 <script>
-
 	import {
 		getClassTypeList
 	} from '@/api/category.js'
 	export default {
-		
 		data() {
 			return {
-
 				headerPosition: "fixed",
-				headerTop: "0px",			
+				headerTop: "0px",
 				filterIndex: 0,
 				priceOrder: 0, //0 价格从低到高 1价格从高到低
 				goodsList: [],
@@ -94,58 +90,8 @@
 
 				})
 			},
-			//加载分类
-			async loadCateList(fid, sid) {
-				let list = await this.$api.json('cateList');
-				let cateList = list.filter(item => item.pid == fid);
 
-				cateList.forEach(item => {
-					let tempList = list.filter(val => val.pid == item.id);
-					item.child = tempList;
-				})
-				this.cateList = cateList;
-			},
-			//加载商品 ，带下拉刷新和上滑加载
-			async loadData(type = 'add', loading) {
-				//没有更多直接返回
-				if (type === 'add') {
-					if (this.loadingType === 'nomore') {
-						return;
-					}
-					this.loadingType = 'loading';
-				} else {
-					this.loadingType = 'more'
-				}
 
-				let goodsList = await this.$api.json('goodsList');
-				if (type === 'refresh') {
-					this.goodsList = [];
-				}
-				//筛选，测试数据直接前端筛选了
-				if (this.filterIndex === 1) {
-					goodsList.sort((a, b) => b.sales - a.sales)
-				}
-				if (this.filterIndex === 2) {
-					goodsList.sort((a, b) => {
-						if (this.priceOrder == 1) {
-							return a.price - b.price;
-						}
-						return b.price - a.price;
-					})
-				}
-
-				this.goodsList = this.goodsList.concat(goodsList);
-
-				//判断是否还有下一页，有是more  没有是nomore(测试数据判断大于20就没有了)
-				this.loadingType = this.goodsList.length > 20 ? 'nomore' : 'more';
-				if (type === 'refresh') {
-					if (loading == 1) {
-						uni.hideLoading()
-					} else {
-						uni.stopPullDownRefresh();
-					}
-				}
-			},
 			//筛选点击
 			tabClick(index) {
 				if (this.filterIndex === index && index !== 2) {
@@ -374,10 +320,8 @@
 				margin-right: 4%;
 			}
 		}
-		
-		.not-goods{
-			
-		}
+
+		.not-goods {}
 
 		.image-wrapper {
 			width: 100%;

@@ -1,5 +1,5 @@
 
-import { login } from "../../api/user"
+import { login } from "@/api/user"
 
 const logins = {
     state: {
@@ -9,7 +9,7 @@ const logins = {
     mutations: {
         SET_USER_INFO: (state, result) => {
             state.userInfo = result
-           
+
         }
     },
     actions: {
@@ -25,11 +25,11 @@ const logins = {
                         uni.setStorageSync('USER_INFO', res.data);
                         return reslove(res)
                     }
-					  return reslove(res)
-                   
-                }).catch(()=>{
-					 return reject(res)
-				})
+                    return reslove(res)
+
+                }).catch(() => {
+                    return reject(res)
+                })
             })
         }
     }

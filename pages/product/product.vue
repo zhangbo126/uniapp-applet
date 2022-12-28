@@ -9,7 +9,6 @@
 				</swiper-item>
 			</swiper>
 		</view>
-
 		<view class="introduce-section">
 			<text class="title">{{goodsInfo.skuName}}</text>
 			<view class="price-box">
@@ -82,10 +81,12 @@
 				<text class="yticon icon-you"></text>
 			</view>
 			<view class="eva-box">
-				<image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg" mode="aspectFill"></image>
+				<image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg"
+					mode="aspectFill"></image>
 				<view class="right">
 					<text class="name">Leo yo</text>
-					<text class="con">茶叶罐包装很好，打开里面也很有讲究，有一袋锡箔纸的包装，拆开茶叶色泽鲜艳，大小均匀。香气也很好。干茶清香，环绕鼻喉。于是我抓一片，入口。脆，香，嫩，细细一品，很有甘甜瑟瑟至味，实为佳品。放入杯中，取两勺子片叶于杯中。倒入80度的水。一泡，清澈透明，层次分明，茶叶明亮。如高山流水遇知音，甘甜与共。待温度降低少许，一小口入口，大赞。好茶。细腻，清香，甘甜回味无穷。一个字，好。</text>
+					<text
+						class="con">茶叶罐包装很好，打开里面也很有讲究，有一袋锡箔纸的包装，拆开茶叶色泽鲜艳，大小均匀。香气也很好。干茶清香，环绕鼻喉。于是我抓一片，入口。脆，香，嫩，细细一品，很有甘甜瑟瑟至味，实为佳品。放入杯中，取两勺子片叶于杯中。倒入80度的水。一泡，清澈透明，层次分明，茶叶明亮。如高山流水遇知音，甘甜与共。待温度降低少许，一小口入口，大赞。好茶。细腻，清香，甘甜回味无穷。一个字，好。</text>
 					<view class="bot">
 						<text class="attr">购买类型：粗茶</text>
 						<text class="time">2019-04-01 19:21</text>
@@ -144,8 +145,8 @@
 
 				<text>规格</text>
 				<view class="item-list">
-					<text v-for="(childItem, childIndex) in goodsInfo.specList" :key="childIndex" class="tit" :class="{selected: selectSpecInfo.index==childIndex}"
-					 @click="selectSpec(childIndex,childItem)">
+					<text v-for="(childItem, childIndex) in goodsInfo.specList" :key="childIndex" class="tit"
+						:class="{selected: selectSpecInfo.index==childIndex}" @click="selectSpec(childIndex,childItem)">
 						{{childItem}}
 					</text>
 				</view>
@@ -169,6 +170,27 @@
 	import {
 		mapState
 	} from "vuex";
+  const shareList = [{
+		type: 1,
+		icon: '/static/temp/share_wechat.png',
+		text: '微信好友'
+	},
+	{
+		type: 2,
+		icon: '/static/temp/share_moment.png',
+		text: '朋友圈'
+	},
+	{
+		type: 3,
+		icon: '/static/temp/share_qq.png',
+		text: 'QQ好友'
+	},
+	{
+		type: 4,
+		icon: '/static/temp/share_qqzone.png',
+		text: 'QQ空间'
+	}
+]
 	export default {
 		components: {
 			share
@@ -189,22 +211,19 @@
 				specClass: 'none',
 				specSelected: [],
 				favorite: true,
-				shareList: [],
+				shareList,
 			};
 		},
 		async onLoad(options) {
-
 			//接收传值,id里面放的是标题，因为测试数据并没写id 
 			let id = options.id;
-			this.shareList = await this.$api.json('shareList');
 			this.getGoodsInfo(id)
-
+			// this.shareList = await this.$api.json('shareList');
 		},
 
 		methods: {
 			//添加购物车
 			onAddCart() {
-
 				if (!this.userInfo._id) {
 					uni.showModal({
 						content: '当前状态未来登录!是否去登录?',
@@ -238,9 +257,8 @@
 				})
 			},
 			getGoodsInfo(id) {
-				getGoodsDetail({
-					id
-				}).then(res => {
+					
+				getGoodsDetail({id}).then(res => {
 					this.goodsInfo = res.data
 					this.goodsInfo.salesVolume = Math.floor(Math.random() * 1220)
 					this.goodsInfo.stock = Math.floor(Math.random() * 12)
@@ -264,8 +282,6 @@
 						browseHistoryList.unshift(this.goodsInfo)
 						uni.setStorageSync('BROWSE_HISTORY', browseHistoryList)
 					}
-
-
 
 				})
 			},

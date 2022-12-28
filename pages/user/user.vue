@@ -4,23 +4,18 @@
 			<image class="bg" src="/static/user-bg.jpg"></image>
 			<view class="user-info-box">
 				<view class="portrait-box">
-					<image class="portrait" :src="userInfo.token? 'https://portrait.gitee.com/uploads/avatars/user/1817/5452088_ZHANG_6666_1627609275.png!avatar200':'/static/missing-face.png'" ></image>
+					<image class="portrait"
+						:src="userInfo.token? 'https://portrait.gitee.com/uploads/avatars/user/1817/5452088_ZHANG_6666_1627609275.png!avatar200':'/static/missing-face.png'">
+					</image>
 				</view>
 				<view class="info-box">
 					<text class="username">{{ userInfo.userAccount || "游客" }}</text>
-					
+
 					<text class="username" v-if="!userInfo.token" @click="navTo()">/登录</text>
 				</view>
 			</view>
 			<view class="vip-card-box">
-			<!-- 	<image class="card-bg" src="/static/vip-card-bg.png" mode=""></image>
-				<view class="b-btn"> 立即开通 </view>
-				<view class="tit">
-					<text class="yticon icon-iLinkapp-"></text>
-					会员
-				</view> -->
-				<!-- <text class="e-m">DCloud Union</text>
-				<text class="e-b">开通会员开发无bug 一测就上线</text> -->
+
 			</view>
 		</view>
 
@@ -29,8 +24,7 @@
           transform: coverTransform,
           transition: coverTransition,
         },
-      ]"
-		 @touchstart="coverTouchstart" @touchmove="coverTouchmove" @touchend="coverTouchend">
+      ]" @touchstart="coverTouchstart" @touchmove="coverTouchmove" @touchend="coverTouchend">
 			<image class="arc" src="/static/arc.png"></image>
 
 			<view class="tj-sction">
@@ -49,19 +43,23 @@
 			</view>
 			<!-- 订单 -->
 			<view class="order-section">
-				<view class="order-item" @click="navTo('/pages/order/order')" hover-class="common-hover" :hover-stay-time="50">
+				<view class="order-item" @click="navTo('/pages/order/order')" hover-class="common-hover"
+					:hover-stay-time="50">
 					<text class="yticon icon-shouye"></text>
 					<text>全部订单</text>
 				</view>
-				<view class="order-item" @click="navTo('/pages/order/order?status=1')" hover-class="common-hover" :hover-stay-time="50">
+				<view class="order-item" @click="navTo('/pages/order/order?status=1')" hover-class="common-hover"
+					:hover-stay-time="50">
 					<text class="yticon icon-daifukuan"></text>
 					<text>待付款</text>
 				</view>
-				<view class="order-item" @click="navTo('/pages/order/order?status=2')" hover-class="common-hover" :hover-stay-time="50">
+				<view class="order-item" @click="navTo('/pages/order/order?status=2')" hover-class="common-hover"
+					:hover-stay-time="50">
 					<text class="yticon icon-yishouhuo"></text>
 					<text>待收货</text>
 				</view>
-				<view class="order-item" @click="navTo('/pages/order/order?status=4')" hover-class="common-hover" :hover-stay-time="50">
+				<view class="order-item" @click="navTo('/pages/order/order?status=4')" hover-class="common-hover"
+					:hover-stay-time="50">
 					<text class="yticon icon-shouhoutuikuan"></text>
 					<text>已取消</text>
 				</view>
@@ -75,16 +73,18 @@
 				<scroll-view scroll-x class="h-list">
 					<view class="h-box">
 						<view v-for="history in historyList" :key="history._id">
-							<image @click="navTo(`/pages/product/product?id=${history._id}`)" :src="history.imageFilePath"
-							 mode="aspectFill"></image>
+							<image @click="navTo(`/pages/product/product?id=${history._id}`)"
+								:src="history.imageFilePath" mode="aspectFill"></image>
 						</view>
 					</view>
 				</scroll-view>
 				<list-cell icon="icon-iconfontweixin" iconColor="#e07472" title="我的钱包" tips="您的会员还有3天过期"></list-cell>
-				<list-cell icon="icon-dizhi" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')"></list-cell>
+				<list-cell icon="icon-dizhi" iconColor="#5fcda2" title="地址管理"
+					@eventClick="navTo('/pages/address/address')"></list-cell>
 				<!-- <list-cell icon="icon-pinglun-copy" iconColor="#ee883b" title="晒单" tips="晒单抢红包"></list-cell> -->
 				<!-- <list-cell icon="icon-shoucang_xuanzhongzhuangtai" iconColor="#54b4ef" title="我的收藏"></list-cell> -->
-				<list-cell icon="icon-shezhi1" iconColor="#e07472" title="设置" border="" @eventClick="navTo('/pages/set/set')"></list-cell>
+				<list-cell icon="icon-shezhi1" iconColor="#e07472" title="设置" border=""
+					@eventClick="navTo('/pages/set/set')"></list-cell>
 			</view>
 		</view>
 	</view>
@@ -106,14 +106,14 @@
 				coverTransform: "translateY(0px)",
 				coverTransition: "0s",
 				moving: false,
-				historyList:[]
+				historyList: []
 			};
 		},
 		onShow() {
-			 this.historyList = uni.getStorageSync('BROWSE_HISTORY') || []
-			 this.historyList.forEach(v=>{
-				  v.imageFilePath= v.designSketch[0]
-			 })
+			this.historyList = uni.getStorageSync('BROWSE_HISTORY') || []
+			this.historyList.forEach(v => {
+				v.imageFilePath = v.designSketch[0]
+			})
 		},
 		// #ifndef MP
 		onNavigationBarButtonTap(e) {
@@ -135,14 +135,14 @@
 			}
 		},
 		// #endif
-		
-			computed: {
-				...mapState({
-					userInfo: (state) => state.login.userInfo,
-				}),
-			},
-		
-	
+
+		computed: {
+			...mapState({
+				userInfo: (state) => state.login.userInfo,
+			}),
+		},
+
+
 		methods: {
 			/**
 			 * 统一跳转接口,拦截未登录路由
@@ -388,9 +388,11 @@
 		.h-list {
 			white-space: nowrap;
 			padding: 30upx 30upx 0;
-			.h-box{
+
+			.h-box {
 				display: flex;
 			}
+
 			image {
 				display: inline-block;
 				width: 160upx;

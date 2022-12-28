@@ -55,7 +55,6 @@
 <script>
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
 	import empty from "@/components/empty";
-	import Json from '@/Json';
 	import {
 		getOrderList,
 		updateOrder,
@@ -137,16 +136,12 @@
 		methods: {
 			getList() {
 				getOrderList(this.pageInfo).then(res => {
-
 					this.orderList = res.data
 					this.orderList.forEach(v => {
 						v.imageFilePath = v.designSketch[0]
 					})
-
 				})
 			},
-
-
 			//swiper 切换
 			changeTab(e) {
 				this.tabCurrentIndex = e.target.current;
@@ -201,7 +196,6 @@
 		},
 		filters: {
 			statusMapFilter(type) {
-
 				return statusMap[type]
 			}
 		}

@@ -3,7 +3,7 @@
 		<!-- 小程序头部兼容 -->
 		<!-- #ifdef MP -->
 		<view class="mp-search-box">
-			<input class="ser-input" type="text" value="输入关键字搜索" disabled />
+			<input class="ser-input" type="text"  value="输入关键字搜索"  />
 		</view>
 		<!-- #endif -->
 		<view>
@@ -33,16 +33,14 @@
 				<text>{{ brand.name }}</text>
 			</view>
 		</view>
-
 		<view class="ad-1">
 			<image src="/static/temp/ad.jpeg" mode="scaleToFill"></image>
 		</view>
-
 		<!-- 秒杀楼层 -->
 		<view class="seckill-section m-t">
 			<view class="s-header">
 				<image class="s-img" src="/static/temp/secskill-img.jpg" mode="widthFix"></image>
-				<u-count-down :timestamp="74002" :show-days="false" :show-hours="true" separator="zh"></u-count-down>
+				<u-count-down :time="22227002" :show-days="false" :show-hours="true" separator="zh"></u-count-down>
 			</view>
 			<scroll-view class="floor-list" scroll-x>
 				<view class="scoll-wrapper">
@@ -125,7 +123,6 @@
 				<text class="price">￥{{ item.price }}</text>
 			</view>
 		</view>
-
 		<u-loadmore :status="lodingType" class="z-loadmore" icon-type="flower" />
 	</view>
 </template>
@@ -135,7 +132,6 @@
 		getGoodsBrand,
 		getGoodsTypeList
 	} from "@/api/home.js";
-
 	const carouselList = [{
 			src: "/static/temp/banner_5.webp",
 			background: "#6cbba3",
@@ -173,7 +169,6 @@
 					pageNumber: 1,
 					goodsType: 1,
 				},
-
 				brandList: [], //品牌列表
 				seckillList: [], //秒杀商品
 				groupBuyingList: [], //团购精品
@@ -181,15 +176,21 @@
 				titleNViewBackground: "",
 				swiperCurrent: 0,
 				carouselList,
-				goodsList: [],
 				lodingType: "loading", //加载状态
 			};
 		},
 		async created() {
-			await this.getBrand();
-			await this.getSeckillGoods();
-			await this.getGrouopBuying();
-			await this.getHotRankList();
+			const all = [
+				 getGoodsBrand(this.brandQueryInfo), // 获取品牌数据
+				 getGoodsTypeList({pageSize:7,pageNumber:1,goodsType:2}), //获取秒杀商品
+				 getGoodsTypeList({pageSize:7,pageNumber:1,goodsType:3}),//获取团购商品
+				 getGoodsTypeList(this.hotQueryInfo)  //获取热销排行商品
+			]
+			const [brand,seckill,grouop,hotRank] = await Promise.all(all)
+			this.brandList  =brand.data
+			this.seckillList  =seckill.data
+			this.groupBuyingList  =grouop.data
+			this.hotRankList  =hotRank.data		
 		},
 
 		onReachBottom() {
@@ -201,43 +202,6 @@
 		},
 
 		methods: {
-			//获取品牌
-			getBrand() {
-				getGoodsBrand(this.brandQueryInfo).then((res) => {
-					if (res.code != 1) {
-						return;
-					}
-					this.brandList = res.data;
-				});
-			},
-			//获取秒杀商品
-			getSeckillGoods() {
-				const queryInfo = {
-					pageSize: 7,
-					pageNumber: 1,
-					goodsType: 2,
-				};
-				getGoodsTypeList(queryInfo).then((res) => {
-					if (res.code != 1) {
-						return;
-					}
-					this.seckillList = res.data;
-				});
-			},
-			//获取团购精品
-			getGrouopBuying() {
-				const queryInfo = {
-					pageSize: 7,
-					pageNumber: 1,
-					goodsType: 3,
-				};
-				getGoodsTypeList(queryInfo).then((res) => {
-					if (res.code != 1) {
-						return;
-					}
-					this.groupBuyingList = res.data;
-				});
-			},
 			//获取热销排行
 			getHotRankList() {
 				this.lodingType = "loading";
@@ -271,7 +235,7 @@
 		// #ifndef MP
 		// 标题栏input搜索框点击
 		onNavigationBarSearchInputClicked: async function(e) {
-			this.$api.msg("点击了搜索框");
+			
 		},
 		//点击导航栏 buttons 时触发
 		onNavigationBarButtonTap(e) {
@@ -480,13 +444,11 @@
 	.seckill-section {
 		padding: 4upx 30upx 24upx;
 		background: #fff;
-
 		.s-header {
 			display: flex;
 			align-items: center;
 			height: 92upx;
 			line-height: 1;
-
 			.s-img {
 				width: 140upx;
 				height: 30upx;

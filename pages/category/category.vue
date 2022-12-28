@@ -45,7 +45,6 @@
 						return
 					}
 					this.classList = res.data
-					this.currentId = this.classList[0]._id
 				}).then(res => {
 					this.calcSize()
 				})
