@@ -1,20 +1,19 @@
 <script>
-	/**
-	 * vuex管理登陆状态，具体可以参考官方登陆模板示例
-	 */
-	import {mapMutations} from 'vuex';
-		
+
+	import {mapMutations,mapActions} from 'vuex';	
 	export default {
 		methods: {
-			...mapMutations(['SET_USER_INFO'])
+			...mapMutations(['SET_LOGIN_INFO']),
+			...mapActions(['GetUserInfo'])
 		},
 		onLaunch: function() {
 			let userInfo = uni.getStorageSync('USER_INFO') || {};
 			if(userInfo.token){
 				//更新登陆状态
-			    this.SET_USER_INFO(userInfo)			
-			}
-			 
+			    this.SET_LOGIN_INFO(userInfo)
+				//获取登录用户信息
+				this.GetUserInfo()
+			}		 
 		},
 		onShow: function() {
 		},

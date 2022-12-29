@@ -138,7 +138,7 @@
 
 		computed: {
 			...mapState({
-				userInfo: (state) => state.login.userInfo,
+				userInfo: (state) => state.login.loginInfo,
 			}),
 		},
 

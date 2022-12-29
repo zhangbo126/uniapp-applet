@@ -1,4 +1,4 @@
-import request from '../utils/request.js'
+import request from '@/utils/request.js'
 
 
 
@@ -11,7 +11,8 @@ const api = {
 	createCorder:'/order/createOrder',
 	updateOrder:'/order/updateOrder',
 	delOrder:'/order/delOrder',
-	getOrderList:'/order/getOrderList'
+	getOrderList:'/order/getOrderList',
+	getUserInfo:'/users/getuserInfo',
 }
 
 
@@ -19,6 +20,8 @@ const api = {
 export const registerAccount = (data) => request('post', api.registerAccount, data)
 //登录
 export const login = (data) => request('post', api.login, data)
+//获取用户信息
+export const getUserInfo = (data) => request('post', api.getUserInfo, data)
 
 //添加购物车
 export const addCart = (data) => request('post', api.addCart, data)
@@ -35,3 +38,4 @@ export const updateOrder = (data) => request('post', api.updateOrder, data)
 export const delOrder = (data) => request('post', api.delOrder, data)
 //获取订单列表
 export const getOrderList = (data) => request('post', api.getOrderList, data)
+
