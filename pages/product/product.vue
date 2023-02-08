@@ -170,34 +170,34 @@
 	import {
 		mapState
 	} from "vuex";
-  const shareList = [{
-		type: 1,
-		icon: '/static/temp/share_wechat.png',
-		text: '微信好友'
-	},
-	{
-		type: 2,
-		icon: '/static/temp/share_moment.png',
-		text: '朋友圈'
-	},
-	{
-		type: 3,
-		icon: '/static/temp/share_qq.png',
-		text: 'QQ好友'
-	},
-	{
-		type: 4,
-		icon: '/static/temp/share_qqzone.png',
-		text: 'QQ空间'
-	}
-]
+	const shareList = [{
+			type: 1,
+			icon: '/static/temp/share_wechat.png',
+			text: '微信好友'
+		},
+		{
+			type: 2,
+			icon: '/static/temp/share_moment.png',
+			text: '朋友圈'
+		},
+		{
+			type: 3,
+			icon: '/static/temp/share_qq.png',
+			text: 'QQ好友'
+		},
+		{
+			type: 4,
+			icon: '/static/temp/share_qqzone.png',
+			text: 'QQ空间'
+		}
+	]
 	export default {
 		components: {
 			share
 		},
 		computed: {
 			...mapState({
-				userInfo: (state) => state.login.userInfo,
+				userInfo: (state) => state.login.loginInfo,
 			}),
 		},
 		data() {
@@ -218,6 +218,7 @@
 			//接收传值,id里面放的是标题，因为测试数据并没写id 
 			let id = options.id;
 			this.getGoodsInfo(id)
+			
 			// this.shareList = await this.$api.json('shareList');
 		},
 
@@ -257,8 +258,10 @@
 				})
 			},
 			getGoodsInfo(id) {
-					
-				getGoodsDetail({id}).then(res => {
+
+				getGoodsDetail({
+					id
+				}).then(res => {
 					this.goodsInfo = res.data
 					this.goodsInfo.salesVolume = Math.floor(Math.random() * 1220)
 					this.goodsInfo.stock = Math.floor(Math.random() * 12)

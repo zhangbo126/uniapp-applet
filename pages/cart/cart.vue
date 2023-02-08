@@ -89,7 +89,7 @@
 		},
 		computed: {
 			...mapState({
-				userInfo: (state) => state.login.userInfo,
+				userInfo: (state) => state.login.loginInfo,
 			})
 		},
 		onShow() {
@@ -173,9 +173,7 @@
 					content: "清空购物车？",
 					success: (e) => {
 						if (e.confirm) {
-
 							const idList = this.cartList.map(v => v._id)
-
 							delCart({
 								idList,
 								userId: this.userInfo._id
