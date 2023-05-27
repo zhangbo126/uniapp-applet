@@ -39,7 +39,7 @@
 			}
 		},
 		{
-			"path": "pages/product/product",
+			"path": "pages/goodsDetail/goodsDetail",
 			"style": {
 				"navigationBarTitleText": "详情展示",
 				"app-plus": {
@@ -114,17 +114,7 @@
 					}
 				}
 			}
-		}, {
-			"path": "pages/detail/detail",
-			"style": {
-				"navigationBarTitleText": "",
-				"app-plus": {
-					"titleNView": {
-						"type": "transparent"
-					}
-				}
-			}
-		}, {
+		},  {
 			"path": "pages/order/order",
 			"style": {
 				"navigationBarTitleText": "我的订单",
@@ -174,11 +164,11 @@
 					"bounce": "none"
 				}
 			}
-		}, {
-			"path": "pages/product/list",
+		},
+		{
+			"path": "pages/category/categoryList",
 			"style": {
-				"enablePullDownRefresh": true,
-				"navigationBarTitleText": "商品列表"
+				"navigationBarTitleText": ""
 			}
 		}
 

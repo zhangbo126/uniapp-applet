@@ -124,7 +124,7 @@ export default {
     navToDetailPage(item) {
       //测试数据没有写id，用title代替
       uni.navigateTo({
-        url: `/pages/product/product?id=${item._id}`
+        url: `/pages/goodsDetail/goodsDetail?id=${item._id}`
       });
     },
     stopPrevent() {}

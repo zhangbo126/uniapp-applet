@@ -3,7 +3,7 @@
     <!-- 小程序头部兼容 -->
     <!-- #ifdef MP -->
     <view class="mp-search-box">
-      <input class="ser-input" type="text" value="输入关键字搜索" />
+      <input class="ser-input" type="text" placeholder="输入关键字搜索" />
     </view>
     <!-- #endif -->
     <view></view>
@@ -51,7 +51,6 @@
         </view>
       </scroll-view>
     </view>
-
     <!-- 团购楼层 -->
     <view class="f-header m-t">
       <image src="/static/temp/h1.png" />
@@ -222,7 +221,7 @@ export default {
     //详情页
     navToDetailPage(item) {
       uni.navigateTo({
-        url: `/pages/product/product?id=${item._id}`
+        url: `/pages/goodsDetail/goodsDetail?id=${item._id}`
       });
     }
   },

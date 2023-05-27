@@ -74,7 +74,7 @@ export default {
     },
     navToList(categoryId) {
       uni.navigateTo({
-        url: `/pages/product/list?categoryId=${categoryId}`
+        url: `/pages/category/categoryList?categoryId=${categoryId}`
       });
     }
   }
