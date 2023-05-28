@@ -2,7 +2,7 @@
   <view class="container">
     <view class="carousel">
       <swiper indicator-dots circular="true" duration="400">
-        <swiper-item class="swiper-item" v-for="(src,index) in goodsInfo.designSketch" :key="index">
+        <swiper-item class="swiper-item" v-for="(src, index) in goodsInfo.designSketch" :key="index">
           <view class="image-wrapper">
             <image :src="src" class="loaded" mode="aspectFill" />
           </view>
@@ -10,25 +10,23 @@
       </swiper>
     </view>
     <view class="introduce-section">
-      <text class="title">{{goodsInfo.skuName}}</text>
+      <text class="title">{{ goodsInfo.skuName }}</text>
       <view class="price-box">
         <text class="price-tip">¥</text>
-        <text class="price">{{goodsInfo.price}}</text>
-        <text class="m-price">¥{{goodsInfo.price * 2}}</text>
-        <text class="coupon-tip">{{goodsInfo.discount}}折</text>
+        <text class="price">{{ goodsInfo.price }}</text>
+        <text class="m-price">¥{{ goodsInfo.price * 2 }}</text>
+        <text class="coupon-tip">{{ goodsInfo.discount }}折</text>
       </view>
       <view class="bot-row">
-        <text>销量: {{goodsInfo.salesVolume}}</text>
-        <text>库存: {{goodsInfo.stock}}</text>
-        <text>浏览量: {{goodsInfo.views}}</text>
+        <text>销量: {{ goodsInfo.salesVolume }}</text>
+        <text>库存: {{ goodsInfo.stock }}</text>
+        <text>浏览量: {{ goodsInfo.views }}</text>
       </view>
     </view>
 
     <!--  分享 -->
     <view class="share-section" @click="share">
-      <view class="share-icon">
-        <text class="yticon icon-xingxing"></text>返
-      </view>
+      <view class="share-icon"> <text class="yticon icon-xingxing"></text>返 </view>
       <text class="tit">该商品分享可领49减10红包</text>
       <text class="yticon icon-bangzhu1"></text>
       <view class="share-btn">
@@ -41,7 +39,7 @@
       <view class="c-row b-b" @click="toggleSpec">
         <text class="tit">购买类型</text>
         <view class="con">
-          <text class="selected-text">{{selectSpecInfo.name}}</text>
+          <text class="selected-text">{{ selectSpecInfo.name }}</text>
         </view>
         <text class="yticon icon-you"></text>
       </view>
@@ -77,10 +75,12 @@
         <text class="yticon icon-you"></text>
       </view>
       <view class="eva-box">
-        <image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg" mode="aspectFill" />
+        <image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg"
+          mode="aspectFill" />
         <view class="right">
           <text class="name">Leo yo</text>
-          <text class="con">茶叶罐包装很好，打开里面也很有讲究，有一袋锡箔纸的包装，拆开茶叶色泽鲜艳，大小均匀。香气也很好。干茶清香，环绕鼻喉。于是我抓一片，入口。脆，香，嫩，细细一品，很有甘甜瑟瑟至味，实为佳品。放入杯中，取两勺子片叶于杯中。倒入80度的水。一泡，清澈透明，层次分明，茶叶明亮。如高山流水遇知音，甘甜与共。待温度降低少许，一小口入口，大赞。好茶。细腻，清香，甘甜回味无穷。一个字，好。</text>
+          <text
+            class="con">茶叶罐包装很好，打开里面也很有讲究，有一袋锡箔纸的包装，拆开茶叶色泽鲜艳，大小均匀。香气也很好。干茶清香，环绕鼻喉。于是我抓一片，入口。脆，香，嫩，细细一品，很有甘甜瑟瑟至味，实为佳品。放入杯中，取两勺子片叶于杯中。倒入80度的水。一泡，清澈透明，层次分明，茶叶明亮。如高山流水遇知音，甘甜与共。待温度降低少许，一小口入口，大赞。好茶。细腻，清香，甘甜回味无穷。一个字，好。</text>
           <view class="bot">
             <text class="attr">购买类型：粗茶</text>
             <text class="time">2019-04-01 19:21</text>
@@ -93,7 +93,7 @@
       <view class="d-header">
         <text>图文详情</text>
       </view>
-      <rich-text :nodes="goodsInfo.mixDetail"></rich-text>
+      <u-parse :content="goodsInfo.mixDetail"></u-parse>
     </view>
 
     <!-- 底部操作菜单 -->
@@ -106,14 +106,18 @@
         <text class="yticon icon-gouwuche"></text>
         <text>购物车</text>
       </navigator>
-      <view class="p-b-btn" :class="{active: favorite}" @click="toFavorite">
+      <view class="p-b-btn" :class="{ active: favorite }" @click="toFavorite">
         <text class="yticon icon-shoucang"></text>
         <text>收藏</text>
       </view>
 
       <view class="action-btn-group">
-        <button type="primary" class="action-btn no-border buy-now-btn" @click="buy">立即购买</button>
-        <button type="primary" class="action-btn no-border add-cart-btn" @click="onAddCart">加入购物车</button>
+        <button type="primary" class="action-btn no-border buy-now-btn" @click="buy">
+          立即购买
+        </button>
+        <button type="primary" class="action-btn no-border add-cart-btn" @click="onAddCart">
+          加入购物车
+        </button>
       </view>
     </view>
 
@@ -125,18 +129,20 @@
         <view class="a-t">
           <image :src="goodsInfo.imageFilePath" />
           <view class="right">
-            <text class="price">¥{{goodsInfo.price}}</text>
-            <text class="stock">库存：{{goodsInfo.stock}}件</text>
+            <text class="price">¥{{ goodsInfo.price }}</text>
+            <text class="stock">库存：{{ goodsInfo.stock }}件</text>
             <view class="selected">
               已选：
-              <text class="selected-text">{{selectSpecInfo.name}}</text>
+              <text class="selected-text">{{ selectSpecInfo.name }}</text>
             </view>
           </view>
         </view>
 
         <text>规格</text>
         <view class="item-list">
-          <text v-for="(childItem, childIndex) in goodsInfo.specList" :key="childIndex" class="tit" :class="{selected: selectSpecInfo.index==childIndex}" @click="selectSpec(childIndex,childItem)">{{childItem}}</text>
+          <text v-for="(childItem, childIndex) in goodsInfo.specList" :key="childIndex" class="tit"
+            :class="{ selected: selectSpecInfo.index == childIndex }" @click="selectSpec(childIndex, childItem)">{{
+              childItem }}</text>
         </view>
         <button class="btn" @click="toggleSpec">完成</button>
       </view>
@@ -155,32 +161,32 @@ const shareList = [
   {
     type: 1,
     icon: "/static/temp/share_wechat.png",
-    text: "微信好友"
+    text: "微信好友",
   },
   {
     type: 2,
     icon: "/static/temp/share_moment.png",
-    text: "朋友圈"
+    text: "朋友圈",
   },
   {
     type: 3,
     icon: "/static/temp/share_qq.png",
-    text: "QQ好友"
+    text: "QQ好友",
   },
   {
     type: 4,
     icon: "/static/temp/share_qqzone.png",
-    text: "QQ空间"
-  }
+    text: "QQ空间",
+  },
 ];
 export default {
   components: {
-    share
+    share,
   },
   computed: {
     ...mapState({
-      userInfo: state => state.login.loginInfo
-    })
+      userInfo: (state) => state.login.loginInfo,
+    }),
   },
   data() {
     return {
@@ -188,92 +194,70 @@ export default {
       cartNum: 0,
       selectSpecInfo: {
         index: 0,
-        name: ""
+        name: "",
       },
       specClass: "none",
       specSelected: [],
       favorite: true,
-      shareList
+      shareList,
     };
   },
   async onLoad(options) {
     //接收传值,id里面放的是标题，因为测试数据并没写id
     let id = options.id;
     this.getGoodsInfo(id);
-
-    // this.shareList = await this.$api.json('shareList');
   },
 
   methods: {
     //添加购物车
-    onAddCart() {
+    async onAddCart() {
       if (!this.userInfo._id) {
-        uni.showModal({
-          content: "当前状态未来登录!是否去登录?",
-          success(e) {
-            if (e.confirm) {
-              uni.navigateTo({
-                url: "/pages/public/login"
-              });
-            }
-          }
-        });
-        return;
+        const [, res] = await uni.showModal({ content: '当前状态未来登录!是否去登录?' })
+        if (res.confirm) {
+         return  uni.navigateTo({
+            url: "/pages/public/login",
+          });
+        }
       }
-
       let obj = Object.assign(
         {},
         {
           num: (this.cartNum += 1),
           userId: this.userInfo._id,
-          skuId: this.goodsInfo._id
+          skuId: this.goodsInfo._id,
         }
       );
-      addCart(obj).then(res => {
-        if (res.code == 1) {
-          return uni.showToast({
-            icon: "none",
-            title: "添加成功"
-          });
-        }
-        uni.showToast({
+
+      const { code } = await addCart(obj)
+      if (code == 1) {
+        return uni.showToast({
           icon: "none",
-          title: "添加成功"
+          title: "添加成功",
         });
-      });
+      }
     },
-    getGoodsInfo(id) {
-      getGoodsDetail({
-        id
-      }).then(res => {
-        this.goodsInfo = res.data;
-        this.goodsInfo.salesVolume = Math.floor(Math.random() * 1220);
-        this.goodsInfo.stock = Math.floor(Math.random() * 12);
-        this.goodsInfo.views = Math.floor(Math.random() * 1220);
-        this.goodsInfo.discount = Math.floor(Math.random() * 10) + 1;
-        this.goodsInfo.specList = [];
-        this.goodsInfo.imageFilePath = res.data.designSketch[0];
-        Object.keys(this.goodsInfo).forEach(key => {
-          if (
-            ["specValue1", "specValue2", "specValue3", "specValue4"].includes(
-              key
-            )
-          ) {
-            this.goodsInfo.specList.push(this.goodsInfo[key]);
-          }
-        });
-        this.imgAddMaxWidth(this.goodsInfo.mixDetail).then(res => {
-          this.goodsInfo.mixDetail = res;
-        });
-        let browseHistoryList = uni.getStorageSync("BROWSE_HISTORY") || [];
-
-        let isAdd = browseHistoryList.some(v => v._id == this.goodsInfo._id);
-
-        if (!isAdd && this.userInfo._id) {
-          browseHistoryList.unshift(this.goodsInfo);
-          uni.setStorageSync("BROWSE_HISTORY", browseHistoryList);
+    async getGoodsInfo(id) {
+      const { data } = await getGoodsDetail({ id });
+      this.goodsInfo = data;
+      this.goodsInfo.salesVolume = Math.floor(Math.random() * 1220);
+      this.goodsInfo.stock = Math.floor(Math.random() * 12);
+      this.goodsInfo.views = Math.floor(Math.random() * 1220);
+      this.goodsInfo.discount = Math.floor(Math.random() * 10) + 1;
+      this.goodsInfo.specList = [];
+      this.goodsInfo.imageFilePath = data.designSketch[0];
+      Object.keys(this.goodsInfo).forEach((key) => {
+        if (["specValue1", "specValue2", "specValue3", "specValue4"].includes(key)) {
+          this.goodsInfo.specList.push(this.goodsInfo[key]);
         }
       });
+      let browseHistoryList = uni.getStorageSync("BROWSE_HISTORY") || [];
+
+      let isAdd = browseHistoryList.some((v) => v._id == this.goodsInfo._id);
+
+      if (!isAdd && this.userInfo._id) {
+        browseHistoryList.unshift(this.goodsInfo);
+        uni.setStorageSync("BROWSE_HISTORY", browseHistoryList);
+      }
     },
     //规格弹窗开关
     toggleSpec() {
@@ -290,7 +274,7 @@ export default {
     selectSpec(index, name) {
       Object.assign(this.selectSpecInfo, {
         index,
-        name
+        name,
       });
     },
     //分享
@@ -303,7 +287,7 @@ export default {
     },
     buy() {
       uni.navigateTo({
-        url: `/pages/order/createOrder`
+        url: `/pages/order/createOrder`,
       });
     },
     imgAddMaxWidth(str) {
@@ -312,19 +296,16 @@ export default {
           return "";
         }
         let regex = new RegExp("/>", "gi");
-        let resStr = str.replace(
-          regex,
-          " style='max-width:100%;height:auto'/>"
-        );
+        let resStr = str.replace(regex, " style='max-width:100%;height:auto'/>");
         reslove(resStr);
       });
     },
-    stopPrevent() {}
-  }
+    stopPrevent() { },
+  },
 };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 page {
   background: $page-color-base;
   padding-bottom: 160upx;

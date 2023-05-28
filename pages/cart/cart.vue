@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <!-- 空白页 -->
-    <view v-if="!userInfo.token || empty === true" class="empty">
+    <view v-if="showEmpty" class="empty">
       <image src="/static/emptyCart.jpg" mode="aspectFit" />
       <view v-if="userInfo.token" class="empty-tips">
         空空如也
@@ -19,7 +19,7 @@
           <view class="cart-item" :class="{ 'b-b': index !== cartList.length - 1 }">
             <view class="image-wrapper">
               <image :src="item.imageFilePath" mode="aspectFill" lazy-load />
-              <view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }" @click="check('item', index)"></view>
+              <view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }" @click="onCheckGood('item', index)"></view>
             </view>
             <view class="item-right">
               <text class="clamp title">{{ item.skuName }}</text>
@@ -34,11 +34,11 @@
       <!-- 底部菜单栏 -->
       <view class="action-section">
         <view class="checkbox">
-          <image :src="allChecked ? '/static/selected.png' : '/static/select.png'" mode="aspectFit" @click="check('all')" />
+          <image :src="allChecked ? '/static/selected.png' : '/static/select.png'" mode="aspectFit" @click="onCheckGood('all')" />
           <view class="clear-btn" :class="{ show: allChecked }" @click="clearCart">清空</view>
         </view>
         <view class="total-box">
-          <text class="price">¥{{ total }}</text>
+          <text class="price">¥{{ totalPrice }}</text>
           <text class="coupon">
             已优惠
             <text>74.35</text>元
@@ -56,29 +56,31 @@ import { getCartList, addCart, delCart } from "@/api/user.js";
 export default {
   data() {
     return {
-      total: 0, //总价格
-      allChecked: false, //全选状态  true|false
-      empty: false, //空白页现实  true|false
       cartList: []
     };
-  },
-
-  watch: {
-    //显示空白页
-    cartList(e) {
-      let empty = e.length === 0 ? true : false;
-      if (this.empty !== empty) {
-        this.empty = empty;
-      }
-    }
   },
   computed: {
     ...mapState({
       userInfo: state => state.login.loginInfo
-    })
+    }),
+    showEmpty(){
+      return !this.userInfo.token || this.cartList.length==0
+    },
+    allChecked(){
+       return this.cartList.filter(v=>v.checked).length == this.cartList.length
+    },
+    //购物车价格计算
+    totalPrice(){
+        let total =this.cartList.reduce((prev,curr,index,arr)=>{
+           if(curr.checked){
+              prev=  prev +curr.price +curr.num
+           }
+          return prev 
+        },0)
+        return total
+    }
   },
   onShow() {
-    this.allChecked = false;
     this.$nextTick(() => {
       this.getList();
     });
@@ -89,18 +91,9 @@ export default {
       const { data } = await getCartList({ userId });
       this.cartList = data || [];
       this.cartList.forEach(v => {
-        v.imageFilePath = v.designSketch[0];
+        this.$set(v,'checked',false)
+         v.imageFilePath = v.designSketch[0];
       });
-    },
-    //请求数据
-
-    //监听image加载完成
-    onImageLoad(key, index) {
-      this.$set(this[key][index], "loaded", "loaded");
-    },
-    //监听image加载失败
-    onImageError(key, index) {
-      this[key][index].image = "/static/errorImage.jpg";
     },
     navToLogin() {
       uni.navigateTo({
@@ -108,7 +101,7 @@ export default {
       });
     },
     //选中状态处理
-    check(type, index) {
+    onCheckGood(type, index) {
       if (type === "item") {
         this.cartList[index].checked = !this.cartList[index].checked;
       } else {
@@ -117,9 +110,7 @@ export default {
         list.forEach(item => {
           item.checked = checked;
         });
-        this.allChecked = checked;
       }
-      this.calcTotal(type);
     },
     //数量
     numberChange(data) {
@@ -131,64 +122,26 @@ export default {
           skuId: data.skuId
         }
       );
-
-      addCart(obj).then(res => {
-        this.calcTotal();
-      });
+      addCart(obj)
     },
     //删除
-    deleteCartItem(index, _id) {
-      let list = this.cartList;
-      delCart({
-        idList: [_id],
-        userId: this.userInfo._id
-      }).then(res => {
-        if (res.code != 1) {
-          return;
-        }
-        this.cartList.splice(index, 1);
-        this.calcTotal();
-      });
+    async deleteCartItem(index, _id) {
+      const idList= [_id]
+      const userId= this.userInfo._id
+      const {code} =await delCart({idList,userId})
+      if(code==1){
+         this.cartList.splice(index,1)
+      }
     },
     //清空
-    clearCart() {
-      uni.showModal({
-        content: "清空购物车？",
-        success: e => {
-          if (e.confirm) {
-            const idList = this.cartList.map(v => v._id);
-            delCart({
-              idList,
-              userId: this.userInfo._id
-            }).then(res => {
-              if (res.code != 1) {
-                return;
-              }
-              this.cartList = [];
-              this.calcTotal();
-            });
-          }
-        }
-      });
-    },
-    //计算总价
-    calcTotal() {
-      let list = this.cartList;
-      if (list.length === 0) {
-        this.empty = true;
-        return;
+   async clearCart() {
+    const [,e] = await  uni.showModal({content: "清空购物车？"})
+    if(e.confirm){
+        const idList = this.cartList.map(v => v._id);
+        const userId = this.userInfo._id
+        const {code}= await delCart({idList,userId})
+        if(code==1)this.cartList = [];
       }
-      let total = 0;
-      let checked = true;
-      list.forEach(item => {
-        if (item.checked === true) {
-          total += item.price * item.num;
-        } else if (checked === true) {
-          checked = false;
-        }
-      });
-      this.allChecked = checked;
-      this.total = Number(total.toFixed(2));
     },
     //创建订单
     createOrder() {

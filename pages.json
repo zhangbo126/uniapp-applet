@@ -1,6 +1,7 @@
 {
 
-	"pages": [{
+	"pages": [
+		{
 			"path": "pages/index/index",
 			"style": {
 				// #ifdef MP 
@@ -39,6 +40,12 @@
 			}
 		},
 		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
 			"path": "pages/goodsDetail/goodsDetail",
 			"style": {
 				"navigationBarTitleText": "详情展示",
@@ -69,11 +76,6 @@
 			"path": "pages/userinfo/userinfo",
 			"style": {
 				"navigationBarTitleText": "修改资料"
-			}
-		}, {
-			"path": "pages/cart/cart",
-			"style": {
-				"navigationBarTitleText": "购物车"
 			}
 		},
 		{
