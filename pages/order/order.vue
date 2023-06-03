@@ -1,36 +1,59 @@
 <template>
   <view class="content">
     <view class="navbar">
-      <view v-for="(item, index) in navList" :key="index" class="nav-item" :class="{current: tabCurrentIndex === index}" @click="tabClick(index)">{{item.text}}</view>
+      <view
+        v-for="(item, index) in navList"
+        :key="index"
+        class="nav-item"
+        :class="{ current: tabCurrentIndex === index }"
+        @click="tabClick(index)"
+        >{{ item.text }}</view
+      >
     </view>
 
-    <swiper :current="tabCurrentIndex" class="swiper-box" duration="300" @change="changeTab">
-      <swiper-item class="tab-content" v-for="(tabItem,tabIndex) in navList" :key="tabIndex">
+    <swiper
+      :current="tabCurrentIndex"
+      class="swiper-box"
+      duration="300"
+      @change="changeTab"
+    >
+      <swiper-item
+        class="tab-content"
+        v-for="(tabItem, tabIndex) in navList"
+        :key="tabIndex"
+      >
         <scroll-view class="list-scroll-content" scroll-y>
           <!-- 空白页 -->
           <empty v-if="orderList.length === 0"></empty>
 
           <!-- 订单列表 -->
-          <view v-for="(item,index) in orderList" :key="index" class="order-item">
+          <view v-for="(item, index) in orderList" :key="index" class="order-item">
             <view class="i-top b-b">
-              <text class="time">{{item.createTime}}</text>
-              <text class="state" :style="{color: item.stateTipColor}">{{item.status | statusMapFilter}}</text>
-              <text v-if="[1,4].includes(item.status)" class="del-btn yticon icon-iconfontshanchu1" @click="deleteOrder(item)"></text>
+              <text class="time">{{ item.createTime }}</text>
+              <text class="state" :style="{ color: item.stateTipColor }">{{
+                item.status | statusMapFilter
+              }}</text>
+              <text
+                v-if="[1, 4].includes(item.status)"
+                class="del-btn yticon icon-iconfontshanchu1"
+                @click="deleteOrder(item)"
+              ></text>
             </view>
 
             <view class="goods-box-single">
               <image class="goods-img" :src="item.imageFilePath" mode="aspectFill" />
               <view class="right">
-                <text class="title clamp">{{item.skuName}}</text>
-                <text class="attr-box">{{item.goodsName}}</text>
-                <text class="price">{{item.price}}</text>
+                <text class="title clamp">{{ item.skuName }}</text>
+                <text class="attr-box">{{ item.goodsName }}</text>
+                <text class="price">{{ item.price }}</text>
               </view>
             </view>
 
             <view class="price-box">
               共
-              <text class="num">{{item.num}}</text>件商品 实付款
-              <text class="price">{{item.num * item.price}}</text>
+              <text class="num">{{ item.num }}</text
+              >件商品 实付款
+              <text class="price">{{ item.num * item.price }}</text>
             </view>
             <view class="action-box b-t" v-if="item.status == 1">
               <button class="action-btn" @click="cancelOrder(item)">取消订单</button>
@@ -52,17 +75,17 @@ const statusMap = {
   1: "待付款",
   2: "待收货",
   3: "待评价",
-  4: "已取消"
+  4: "已取消",
 };
 export default {
   components: {
     uniLoadMore,
-    empty
+    empty,
   },
   computed: {
     ...mapState({
-      userInfo: state => state.login.userInfo
-    })
+      userInfo: (state) => state.login.userInfo,
+    }),
   },
   data() {
     return {
@@ -71,7 +94,7 @@ export default {
         pageSize: 1000,
         pageNumber: 1,
         userId: null,
-        status: undefined
+        status: undefined,
       },
       statusMap,
       tabCurrentIndex: 0,
@@ -80,33 +103,28 @@ export default {
           state: 0,
           text: "全部",
           loadingType: "more",
-          orderList: []
         },
         {
           state: 1,
           text: "待付款",
           loadingType: "more",
-          orderList: []
         },
         {
           state: 2,
           text: "待收货",
           loadingType: "more",
-          orderList: []
         },
         {
           state: 3,
           text: "待评价",
           loadingType: "more",
-          orderList: []
         },
         {
           state: 4,
           text: "已取消",
           loadingType: "more",
-          orderList: []
-        }
-      ]
+        },
+      ],
     };
   },
   onLoad(options) {
@@ -120,9 +138,9 @@ export default {
 
   methods: {
     getList() {
-      getOrderList(this.pageInfo).then(res => {
+      getOrderList(this.pageInfo).then((res) => {
         this.orderList = res.data;
-        this.orderList.forEach(v => {
+        this.orderList.forEach((v) => {
           v.imageFilePath = v.designSketch[0];
         });
       });
@@ -130,8 +148,7 @@ export default {
     //swiper 切换
     changeTab(e) {
       this.tabCurrentIndex = e.target.current;
-      this.pageInfo.status =
-        this.tabCurrentIndex == 0 ? undefined : this.tabCurrentIndex;
+      this.pageInfo.status = this.tabCurrentIndex == 0 ? undefined : this.tabCurrentIndex;
       this.getList();
     },
     //顶部tab点击
@@ -142,46 +159,47 @@ export default {
     deleteOrder(item) {
       uni.showModal({
         content: "删除订单???",
-        success: e => {
+        success: (e) => {
           if (e.confirm) {
-            delOrder({ _id: item._id }).then(res => {
+            delOrder({ _id: item._id }).then((res) => {
               if (res.code != 1) {
                 return;
               }
               this.getList();
             });
           }
-        }
+        },
       });
     },
     //取消订单
     cancelOrder(item) {
       updateOrder({
         status: 4,
-        id: item._id
-      }).then(res => {
+        id: item._id,
+      }).then((res) => {
         if (res.code != 1) {
           return;
         }
         uni.showToast({
           title: "取消成功",
-          icon: "none"
+          icon: "none",
         });
         this.getList();
       });
     },
     goPay(item) {
       uni.redirectTo({
-        url: `/pages/money/pay?money=${item.num *
-          item.price}&orderIds=${JSON.stringify([item._id])}`
+        url: `/pages/money/pay?money=${item.num * item.price}&orderIds=${JSON.stringify([
+          item._id,
+        ])}`,
       });
-    }
+    },
   },
   filters: {
     statusMapFilter(type) {
       return statusMap[type];
-    }
-  }
+    },
+  },
 };
 </script>
 

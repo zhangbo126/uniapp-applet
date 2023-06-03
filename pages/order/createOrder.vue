@@ -72,7 +72,7 @@
         <text class="price-tip">￥</text>
         <text class="price">{{goodsTotalMoney-couponPrice}}</text>
       </view>
-      <text class="submit" @click="submit">提交订单</text>
+      <text class="submit" @click="onSubmit">提交订单</text>
     </view>
 
     <!-- 优惠券面板 -->
@@ -168,13 +168,7 @@ export default {
     changePayType(type) {
       this.payType = type;
     },
-    submit() {
-      // if(!this.addressData.address){
-      // 	return uni.showToast({
-      // 		title:'请选择收货地址',
-      // 		icon:'none'
-      // 	})
-      // }
+    onSubmit() {
       let skuIds = this.orderList.map(v => {
         return {
           skuId: v.skuId,
@@ -183,16 +177,14 @@ export default {
       });
       const obj = {
         skuIds,
-        userId: this.userInfo._id
+        userId: this.userInfo._id || uni.getStorageSync("USER_INFO")._id
       };
       createCorder(obj).then(res => {
         if (res.code != 1) {
           return;
         }
         uni.redirectTo({
-          url: `/pages/money/pay?money=${
-            this.goodsTotalMoney
-          }&orderIds=${JSON.stringify(res.data)}`
+          url: `/pages/money/pay?money=${this.goodsTotalMoney}&orderIds=${JSON.stringify(res.data)}`
         });
       });
     },

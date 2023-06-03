@@ -44,7 +44,6 @@ export default {
     let title = "新增收货地址";
     if (option.type === "edit") {
       title = "编辑收货地址";
-
       this.addressData = JSON.parse(option.data);
     }
     this.manageType = option.type;
@@ -94,8 +93,7 @@ export default {
         addressList.push(this.addressData);
         uni.setStorageSync("ADDRESS_INFO", addressList);
       }
-
-      this.$api.msg(`地址${this.manageType == "edit" ? "修改" : "添加"}成功`);
+      this.$api.msg(`地址${this.manageType == "edit" ? "修改" : "添加"}成功`)
       setTimeout(() => {
         uni.navigateBack();
       }, 800);

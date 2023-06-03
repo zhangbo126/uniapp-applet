@@ -35,8 +35,6 @@ export default {
     //选择地址
     checkAddress(item) {
       if (this.source == 1) {
-        //this.$api.prePage()获取上一页实例，在App.vue定义
-        this.$api.prePage().addressData = item;
         uni.navigateBack();
       }
     },
@@ -52,7 +50,6 @@ export default {
       //添加或修改后事件，这里直接在最前面添加了一条数据，实际应用中直接刷新地址列表即可
       this.addressList.unshift(data);
 
-      console.log(data, type);
     }
   }
 };

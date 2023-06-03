@@ -4,11 +4,10 @@
       <image class="bg" src="/static/user-bg.jpg" />
       <view class="user-info-box">
         <view class="portrait-box">
-          <image class="portrait" :src="userInfo.token? 'https://portrait.gitee.com/uploads/avatars/user/1817/5452088_ZHANG_6666_1627609275.png!avatar200':'/static/missing-face.png'" />
+          <image class="portrait" :src="avatars" />
         </view>
         <view class="info-box">
           <text class="username">{{ userInfo.userAccount || "游客" }}</text>
-
           <text class="username" v-if="!userInfo.token" @click="navTo()">/登录</text>
         </view>
       </view>
@@ -96,6 +95,14 @@ export default {
       historyList: []
     };
   },
+  computed:{
+    ...mapState({
+      userInfo: state => state.login.loginInfo
+    }),
+    avatars(){
+       return this.userInfo.token? 'https://portrait.gitee.com/uploads/avatars/user/1817/5452088_ZHANG_6666_1627609275.png!avatar200':'/static/missing-face.png' 
+    }
+  },
   onShow() {
     this.historyList = uni.getStorageSync("BROWSE_HISTORY") || [];
     this.historyList.forEach(v => {
@@ -123,11 +130,7 @@ export default {
   },
   // #endif
 
-  computed: {
-    ...mapState({
-      userInfo: state => state.login.loginInfo
-    })
-  },
+
 
   methods: {
     /**
@@ -138,9 +141,7 @@ export default {
       if (!this.userInfo.token) {
         url = "/pages/public/login";
       }
-      uni.navigateTo({
-        url
-      });
+      uni.navigateTo({url });
     },
 
     /**

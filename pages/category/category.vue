@@ -1,15 +1,39 @@
 <template>
   <view class="content">
     <scroll-view scroll-y class="left-aside">
-      <view v-for="(item,index) in classList" :key="item.id" class="f-item b-b" :class="{active: index === navActiveIndex}" @click="()=>tabtap(item,index)">{{item.name}}</view>
+      <view
+        v-for="(item, index) in classList"
+        :key="item.id"
+        class="f-item b-b"
+        :class="{ active: index === navActiveIndex }"
+        @click="() => tabtap(item, index)"
+        >{{ item.name }}</view
+      >
     </scroll-view>
-    <scroll-view scroll-with-animation scroll-y class="right-aside" @scroll="asideScroll" :scroll-top="navScrollTop">
-      <view v-for="item in classList" :key="item._id" class="s-list" :id="'nav-'+item._id">
-        <text class="s-item">{{item.name}}</text>
+    <scroll-view
+      scroll-with-animation
+      scroll-y
+      class="right-aside"
+      @scroll="asideScroll"
+      :scroll-top="navScrollTop"
+    >
+      <view
+        v-for="item in classList"
+        :key="item._id"
+        class="s-list"
+        :id="'nav-' + item._id"
+      >
+        <text class="s-item">{{ item.name }}</text>
         <view class="t-list">
-          <view @click="navToList(item._id)" v-if="c.partentId === item._id" class="t-item" v-for="c in item.children" :key="c._id">
+          <view
+            @click="navToList(item._id)"
+            v-if="c.partentId === item._id"
+            class="t-item"
+            v-for="c in item.children"
+            :key="c._id"
+          >
             <image :src="c.logoFilePath" />
-            <text>{{c.name}}</text>
+            <text>{{ c.name }}</text>
           </view>
         </view>
       </view>
@@ -24,7 +48,7 @@ export default {
     return {
       classList: [],
       navScrollTop: 0,
-      navActiveIndex: 0
+      navActiveIndex: 0,
     };
   },
   onLoad() {
@@ -32,19 +56,13 @@ export default {
   },
 
   methods: {
-    getClassTreeList() {
-      getClassTree()
-        .then(res => {
-          if (res.code != 1) {
-            return;
-          }
-          this.classList = res.data;
-        })
-        .then(res => {
-          this.calcSize();
-        });
+    async getClassTreeList() {
+      const { code, data } = await getClassTree();
+      this.classList = data;
+      this.$nextTick(() => {
+        this.calcSize();
+      });
     },
-
     //一级分类点击
     tabtap(item, index) {
       this.navScrollTop = item.top;
@@ -53,7 +71,7 @@ export default {
     //右侧栏滚动
     asideScroll(e) {
       let scrollTop = e.detail.scrollTop;
-      let navs = this.classList.filter(item => item.top <= scrollTop).reverse();
+      let navs = this.classList.filter((item) => item.top <= scrollTop).reverse();
       if (navs.length > 0) {
         const index = navs.length - 1;
         this.navActiveIndex = index;
@@ -63,10 +81,10 @@ export default {
     calcSize() {
       //页面初始化时计算元素距离顶部距离
       const query = uni.createSelectorQuery().in(this);
-      this.classList.forEach(v => {
+      this.classList.forEach((v) => {
         query
           .select(`#nav-${v._id}`)
-          .boundingClientRect(data => {
+          .boundingClientRect((data) => {
             v.top = data.top;
           })
           .exec();
@@ -74,14 +92,14 @@ export default {
     },
     navToList(categoryId) {
       uni.navigateTo({
-        url: `/pages/category/categoryList?categoryId=${categoryId}`
+        url: `/pages/category/categoryList?categoryId=${categoryId}`,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 page,
 .content {
   height: 100%;

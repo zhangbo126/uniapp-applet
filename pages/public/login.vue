@@ -67,7 +67,6 @@ export default {
     };
   },
   onReady() {
-    console.log(this.$refs.uForm);
     this.$refs.uForm.setRules(this.rules);
   },
   methods: {

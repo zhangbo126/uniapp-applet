@@ -91,7 +91,7 @@ export default {
       const { data } = await getCartList({ userId });
       this.cartList = data || [];
       this.cartList.forEach(v => {
-        this.$set(v,'checked',false)
+        this.$set(v,'checked',false) 
          v.imageFilePath = v.designSketch[0];
       });
     },
