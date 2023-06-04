@@ -10,7 +10,6 @@
         >{{ item.text }}</view
       >
     </view>
-
     <swiper
       :current="tabCurrentIndex"
       class="swiper-box"
@@ -24,8 +23,7 @@
       >
         <scroll-view class="list-scroll-content" scroll-y>
           <!-- 空白页 -->
-          <empty v-if="orderList.length === 0"></empty>
-
+          <u-empty  mode="order" v-if="orderList.length === 0"  icon="http://cdn.uviewui.com/uview/empty/order.png"></u-empty>
           <!-- 订单列表 -->
           <view v-for="(item, index) in orderList" :key="index" class="order-item">
             <view class="i-top b-b">
@@ -39,7 +37,6 @@
                 @click="deleteOrder(item)"
               ></text>
             </view>
-
             <view class="goods-box-single">
               <image class="goods-img" :src="item.imageFilePath" mode="aspectFill" />
               <view class="right">
@@ -48,7 +45,6 @@
                 <text class="price">{{ item.price }}</text>
               </view>
             </view>
-
             <view class="price-box">
               共
               <text class="num">{{ item.num }}</text
@@ -67,8 +63,6 @@
 </template>
 
 <script>
-import uniLoadMore from "@/components/uni-load-more/uni-load-more.vue";
-import empty from "@/components/empty";
 import { getOrderList, updateOrder, delOrder } from "@/api/user.js";
 import { mapState } from "vuex";
 const statusMap = {
@@ -77,11 +71,36 @@ const statusMap = {
   3: "待评价",
   4: "已取消",
 };
-export default {
-  components: {
-    uniLoadMore,
-    empty,
+
+const navList = [
+  {
+    state: 0,
+    text: "全部",
+    loadingType: "more",
   },
+  {
+    state: 1,
+    text: "待付款",
+    loadingType: "more",
+  },
+  {
+    state: 2,
+    text: "待收货",
+    loadingType: "more",
+  },
+  {
+    state: 3,
+    text: "待评价",
+    loadingType: "more",
+  },
+  {
+    state: 4,
+    text: "已取消",
+    loadingType: "more",
+  },
+];
+
+export default {
   computed: {
     ...mapState({
       userInfo: (state) => state.login.userInfo,
@@ -89,6 +108,7 @@ export default {
   },
   data() {
     return {
+      navList,
       orderList: [],
       pageInfo: {
         pageSize: 1000,
@@ -98,33 +118,6 @@ export default {
       },
       statusMap,
       tabCurrentIndex: 0,
-      navList: [
-        {
-          state: 0,
-          text: "全部",
-          loadingType: "more",
-        },
-        {
-          state: 1,
-          text: "待付款",
-          loadingType: "more",
-        },
-        {
-          state: 2,
-          text: "待收货",
-          loadingType: "more",
-        },
-        {
-          state: 3,
-          text: "待评价",
-          loadingType: "more",
-        },
-        {
-          state: 4,
-          text: "已取消",
-          loadingType: "more",
-        },
-      ],
     };
   },
   onLoad(options) {
@@ -132,17 +125,16 @@ export default {
     this.tabCurrentIndex = parseInt(options.status) || 0;
   },
   onShow(options) {
-    this.pageInfo.userId = this.userInfo._id;
+    this.pageInfo.userId = this.userInfo._id || uni.getStorageSync("USER_INFO")._id
     this.getList();
   },
 
   methods: {
-    getList() {
-      getOrderList(this.pageInfo).then((res) => {
-        this.orderList = res.data;
-        this.orderList.forEach((v) => {
-          v.imageFilePath = v.designSketch[0];
-        });
+    async getList() {
+      const { data } = await getOrderList(this.pageInfo);
+      this.orderList = data || [];
+      this.orderList.forEach((v) => {
+        v.imageFilePath = v.designSketch[0];
       });
     },
     //swiper 切换
@@ -156,36 +148,22 @@ export default {
       this.tabCurrentIndex = index;
     },
     //删除订单
-    deleteOrder(item) {
-      uni.showModal({
-        content: "删除订单???",
-        success: (e) => {
-          if (e.confirm) {
-            delOrder({ _id: item._id }).then((res) => {
-              if (res.code != 1) {
-                return;
-              }
-              this.getList();
-            });
-          }
-        },
-      });
+    async deleteOrder(item) {
+      const [, e] = await uni.showModal({ content: "删除订单???" });
+      if (e.confirm) {
+        const { code } = await delOrder({ _id: item._id });
+        if (code == 1) {
+          this.getList();
+        }
+      }
     },
     //取消订单
-    cancelOrder(item) {
-      updateOrder({
-        status: 4,
-        id: item._id,
-      }).then((res) => {
-        if (res.code != 1) {
-          return;
-        }
-        uni.showToast({
-          title: "取消成功",
-          icon: "none",
-        });
+    async cancelOrder(item) {
+      const { code } = await updateOrder({ status: 4, id: item._id });
+      if (code == 1) {
+        this.$api.msg("取消成功");
         this.getList();
-      });
+      }
     },
     goPay(item) {
       uni.redirectTo({
@@ -425,129 +403,6 @@ page,
     }
   }
 }
-
-/* load-more */
-.uni-load-more {
-  display: flex;
-  flex-direction: row;
-  height: 80upx;
-  align-items: center;
-  justify-content: center;
-}
-
-.uni-load-more__text {
-  font-size: 28upx;
-  color: #999;
-}
-
-.uni-load-more__img {
-  height: 24px;
-  width: 24px;
-  margin-right: 10px;
-}
-
-.uni-load-more__img > view {
-  position: absolute;
-}
-
-.uni-load-more__img > view view {
-  width: 6px;
-  height: 2px;
-  border-top-left-radius: 1px;
-  border-bottom-left-radius: 1px;
-  background: #999;
-  position: absolute;
-  opacity: 0.2;
-  transform-origin: 50%;
-  animation: load 1.56s ease infinite;
-}
-
-.uni-load-more__img > view view:nth-child(1) {
-  transform: rotate(90deg);
-  top: 2px;
-  left: 9px;
-}
-
-.uni-load-more__img > view view:nth-child(2) {
-  transform: rotate(180deg);
-  top: 11px;
-  right: 0;
-}
-
-.uni-load-more__img > view view:nth-child(3) {
-  transform: rotate(270deg);
-  bottom: 2px;
-  left: 9px;
-}
-
-.uni-load-more__img > view view:nth-child(4) {
-  top: 11px;
-  left: 0;
-}
-
-.load1,
-.load2,
-.load3 {
-  height: 24px;
-  width: 24px;
-}
-
-.load2 {
-  transform: rotate(30deg);
-}
-
-.load3 {
-  transform: rotate(60deg);
-}
-
-.load1 view:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.load2 view:nth-child(1) {
-  animation-delay: 0.13s;
-}
-
-.load3 view:nth-child(1) {
-  animation-delay: 0.26s;
-}
-
-.load1 view:nth-child(2) {
-  animation-delay: 0.39s;
-}
-
-.load2 view:nth-child(2) {
-  animation-delay: 0.52s;
-}
-
-.load3 view:nth-child(2) {
-  animation-delay: 0.65s;
-}
-
-.load1 view:nth-child(3) {
-  animation-delay: 0.78s;
-}
-
-.load2 view:nth-child(3) {
-  animation-delay: 0.91s;
-}
-
-.load3 view:nth-child(3) {
-  animation-delay: 1.04s;
-}
-
-.load1 view:nth-child(4) {
-  animation-delay: 1.17s;
-}
-
-.load2 view:nth-child(4) {
-  animation-delay: 1.3s;
-}
-
-.load3 view:nth-child(4) {
-  animation-delay: 1.43s;
-}
-
 @-webkit-keyframes load {
   0% {
     opacity: 1;

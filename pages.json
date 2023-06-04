@@ -40,7 +40,7 @@
 			}
 		},
 		{
-			"path": "pages/cart/cart",
+			"path": "pages/cartList/cartList",
 			"style": {
 				"navigationBarTitleText": "购物车"
 			}
@@ -62,7 +62,7 @@
 			}
 		},
 		{
-			"path": "pages/public/login",
+			"path": "pages/loginPage/login",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom",
@@ -73,20 +73,20 @@
 			}
 		},
 		{
-			"path": "pages/userinfo/userinfo",
+			"path": "pages/userInfo/userInfo",
 			"style": {
 				"navigationBarTitleText": "修改资料"
 			}
 		},
 		{
-			"path": "pages/public/register",
+			"path": "pages/loginPage/register",
 			"style": {
 
 				"navigationBarTitleText": "注册"
 			}
 		},
 		{
-			"path": "pages/user/user",
+			"path": "pages/myCenter/myCenter",
 			"style": {
 				"navigationBarTitleText": "我的",
 				// #ifdef MP
@@ -117,7 +117,7 @@
 				}
 			}
 		},  {
-			"path": "pages/order/order",
+			"path": "pages/orderList/orderList",
 			"style": {
 				"navigationBarTitleText": "我的订单",
 				"app-plus": {
@@ -128,7 +128,7 @@
 			"path": "pages/money/money",
 			"style": {}
 		}, {
-			"path": "pages/order/createOrder",
+			"path": "pages/orderList/createOrder",
 			"style": {
 				"navigationBarTitleText": "创建订单"
 			}
@@ -159,7 +159,7 @@
 				"navigationBarTitleText": "通知"
 			}
 		}, {
-			"path": "pages/category/category",
+			"path": "pages/categoryPage/categoryNav",
 			"style": {
 				"navigationBarTitleText": "分类",
 				"app-plus": {
@@ -168,7 +168,7 @@
 			}
 		},
 		{
-			"path": "pages/category/categoryList",
+			"path": "pages/categoryPage/categoryList",
 			"style": {
 				"navigationBarTitleText": ""
 			}
@@ -193,19 +193,19 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/category/category",
+				"pagePath": "pages/categoryPage/categoryNav",
 				"iconPath": "static/tab-cate.png",
 				"selectedIconPath": "static/tab-cate-current.png",
 				"text": "分类"
 			},
 			{
-				"pagePath": "pages/cart/cart",
+				"pagePath": "pages/cartList/cartList",
 				"iconPath": "static/tab-cart.png",
 				"selectedIconPath": "static/tab-cart-current.png",
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/user/user",
+				"pagePath": "pages/myCenter/myCenter",
 				"iconPath": "static/tab-my.png",
 				"selectedIconPath": "static/tab-my-current.png",
 				"text": "我的"

@@ -38,19 +38,19 @@
       </view>
       <!-- 订单 -->
       <view class="order-section">
-        <view class="order-item" @click="navTo('/pages/order/order')" hover-class="common-hover" :hover-stay-time="50">
+        <view class="order-item" @click="navTo('/pages/orderList/orderList')" hover-class="common-hover" :hover-stay-time="50">
           <text class="yticon icon-shouye"></text>
           <text>全部订单</text>
         </view>
-        <view class="order-item" @click="navTo('/pages/order/order?status=1')" hover-class="common-hover" :hover-stay-time="50">
+        <view class="order-item" @click="navTo('/pages/orderList/orderList?status=1')" hover-class="common-hover" :hover-stay-time="50">
           <text class="yticon icon-daifukuan"></text>
           <text>待付款</text>
         </view>
-        <view class="order-item" @click="navTo('/pages/order/order?status=2')" hover-class="common-hover" :hover-stay-time="50">
+        <view class="order-item" @click="navTo('/pages/orderList/orderList?status=2')" hover-class="common-hover" :hover-stay-time="50">
           <text class="yticon icon-yishouhuo"></text>
           <text>待收货</text>
         </view>
-        <view class="order-item" @click="navTo('/pages/order/order?status=4')" hover-class="common-hover" :hover-stay-time="50">
+        <view class="order-item" @click="navTo('/pages/orderList/orderList?status=4')" hover-class="common-hover" :hover-stay-time="50">
           <text class="yticon icon-shouhoutuikuan"></text>
           <text>已取消</text>
         </view>
@@ -64,7 +64,7 @@
         <scroll-view scroll-x class="h-list">
           <view class="h-box">
             <view v-for="history in historyList" :key="history._id">
-              <image @click="navTo(`/pages/product/product?id=${history._id}`)" :src="history.imageFilePath" mode="aspectFill" />
+              <image @click="navTo(`/pages/goodsDetail/goodsDetail?id=${history._id}`)" :src="history.imageFilePath" mode="aspectFill" />
             </view>
           </view>
         </scroll-view>
@@ -139,7 +139,7 @@ export default {
      */
     navTo(url) {
       if (!this.userInfo.token) {
-        url = "/pages/public/login";
+        url = "/pages/loginPage/login";
       }
       uni.navigateTo({url });
     },

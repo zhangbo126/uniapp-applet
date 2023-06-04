@@ -2,7 +2,7 @@
   <view class="app">
     <view class="price-box">
       <text>支付金额</text>
-      <text class="price">{{goodsTotalMoney}}</text>
+      <text class="price">{{ goodsTotalMoney }}</text>
     </view>
 
     <view class="pay-type-list">
@@ -49,7 +49,7 @@ export default {
       payType: 1,
       goodsTotalMoney: 0,
       orderInfo: {},
-      orderIds: []
+      orderIds: [],
     };
   },
   onLoad(options) {
@@ -63,32 +63,22 @@ export default {
       this.payType = type;
     },
     //确认支付
-    confirm: async function() {
-      let obj = Object.assign(
-        {},
-        {
-          orderIds: this.orderIds,
-          status: 2
-        }
-      );
-      updateOrder(obj).then(res => {
-        if (res.code != 1) {
-          return uni.showToast({
-            title: res.message,
-            icon: "none"
-          });
-        }
-
-        uni.redirectTo({
-          url: "/pages/money/paySuccess"
-        });
-      });
-    }
-  }
+    async confirm() {
+      let obj = {
+        orderIds: this.orderIds,
+        status: 2,
+      };
+      const { code, message } = await updateOrder(obj);
+      if (code != 1) {
+        return this.$api.msg(message);
+      }
+      uni.redirectTo({ url: "/pages/money/paySuccess" });
+    },
+  },
 };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .app {
   width: 100%;
 }

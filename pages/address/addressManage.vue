@@ -55,7 +55,6 @@ export default {
     switchChange(e) {
       this.addressData.default = e.detail.value;
     },
-
     //地图选择地址
     chooseLocation() {
       uni.chooseLocation({
@@ -65,7 +64,6 @@ export default {
         }
       });
     },
-
     //提交
     confirm() {
       let data = this.addressData;

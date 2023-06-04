@@ -2,7 +2,11 @@
   <view class="container">
     <view class="carousel">
       <swiper indicator-dots circular="true" duration="400">
-        <swiper-item class="swiper-item" v-for="(src, index) in goodsInfo.designSketch" :key="index">
+        <swiper-item
+          class="swiper-item"
+          v-for="(src, index) in goodsInfo.designSketch"
+          :key="index"
+        >
           <view class="image-wrapper">
             <image :src="src" class="loaded" mode="aspectFill" />
           </view>
@@ -75,12 +79,16 @@
         <text class="yticon icon-you"></text>
       </view>
       <view class="eva-box">
-        <image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg"
-          mode="aspectFill" />
+        <image
+          class="portrait"
+          src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg"
+          mode="aspectFill"
+        />
         <view class="right">
           <text class="name">Leo yo</text>
-          <text
-            class="con">茶叶罐包装很好，打开里面也很有讲究，有一袋锡箔纸的包装，拆开茶叶色泽鲜艳，大小均匀。香气也很好。干茶清香，环绕鼻喉。于是我抓一片，入口。脆，香，嫩，细细一品，很有甘甜瑟瑟至味，实为佳品。放入杯中，取两勺子片叶于杯中。倒入80度的水。一泡，清澈透明，层次分明，茶叶明亮。如高山流水遇知音，甘甜与共。待温度降低少许，一小口入口，大赞。好茶。细腻，清香，甘甜回味无穷。一个字，好。</text>
+          <text class="con"
+            >茶叶罐包装很好，打开里面也很有讲究，有一袋锡箔纸的包装，拆开茶叶色泽鲜艳，大小均匀。香气也很好。干茶清香，环绕鼻喉。于是我抓一片，入口。脆，香，嫩，细细一品，很有甘甜瑟瑟至味，实为佳品。放入杯中，取两勺子片叶于杯中。倒入80度的水。一泡，清澈透明，层次分明，茶叶明亮。如高山流水遇知音，甘甜与共。待温度降低少许，一小口入口，大赞。好茶。细腻，清香，甘甜回味无穷。一个字，好。</text
+          >
           <view class="bot">
             <text class="attr">购买类型：粗茶</text>
             <text class="time">2019-04-01 19:21</text>
@@ -102,7 +110,7 @@
         <text class="yticon icon-xiatubiao--copy"></text>
         <text>首页</text>
       </navigator>
-      <navigator url="/pages/cart/cart" open-type="switchTab" class="p-b-btn">
+      <navigator url="/pages/cartList/cartList" open-type="switchTab" class="p-b-btn">
         <text class="yticon icon-gouwuche"></text>
         <text>购物车</text>
       </navigator>
@@ -112,17 +120,26 @@
       </view>
 
       <view class="action-btn-group">
-        <button type="primary" class="action-btn no-border buy-now-btn" @click="buy">
+        <button type="primary" class="action-btn no-border buy-now-btn" @click="onBuy">
           立即购买
         </button>
-        <button type="primary" class="action-btn no-border add-cart-btn" @click="onAddCart">
+        <button
+          type="primary"
+          class="action-btn no-border add-cart-btn"
+          @click="onAddCart"
+        >
           加入购物车
         </button>
       </view>
     </view>
 
     <!-- 规格-模态层弹窗 -->
-    <view class="popup spec" :class="specClass" @touchmove.stop.prevent="stopPrevent" @click="toggleSpec">
+    <view
+      class="popup spec"
+      :class="specClass"
+      @touchmove.stop.prevent="stopPrevent"
+      @click="toggleSpec"
+    >
       <!-- 遮罩层 -->
       <view class="mask"></view>
       <view class="layer attr-content" @click.stop="stopPrevent">
@@ -140,9 +157,14 @@
 
         <text>规格</text>
         <view class="item-list">
-          <text v-for="(childItem, childIndex) in goodsInfo.specList" :key="childIndex" class="tit"
-            :class="{ selected: selectSpecInfo.index == childIndex }" @click="selectSpec(childIndex, childItem)">{{
-              childItem }}</text>
+          <text
+            v-for="(childItem, childIndex) in goodsInfo.specList"
+            :key="childIndex"
+            class="tit"
+            :class="{ selected: selectSpecInfo.index == childIndex }"
+            @click="selectSpec(childIndex, childItem)"
+            >{{ childItem }}</text
+          >
         </view>
         <button class="btn" @click="toggleSpec">完成</button>
       </view>
@@ -212,11 +234,9 @@ export default {
     //添加购物车
     async onAddCart() {
       if (!this.userInfo._id) {
-        const [, res] = await uni.showModal({ content: '当前状态未来登录!是否去登录?' })
+        const [, res] = await uni.showModal({ content: "当前状态未来登录!是否去登录?" });
         if (res.confirm) {
-         return  uni.navigateTo({
-            url: "/pages/public/login",
-          });
+          return uni.navigateTo({url: "/pages/public/login",});
         }
       }
       let obj = Object.assign(
@@ -228,7 +248,7 @@ export default {
         }
       );
 
-      const { code } = await addCart(obj)
+      const { code } = await addCart(obj);
       if (code == 1) {
         return uni.showToast({
           icon: "none",
@@ -244,16 +264,16 @@ export default {
       this.goodsInfo.views = Math.floor(Math.random() * 1220);
       this.goodsInfo.discount = Math.floor(Math.random() * 10) + 1;
       this.goodsInfo.specList = [];
-      this.goodsInfo.imageFilePath = data.designSketch[0];
+      this.goodsInfo.imageFilePath =this.imgAddMaxWidth(data.designSketch[0])
       Object.keys(this.goodsInfo).forEach((key) => {
         if (["specValue1", "specValue2", "specValue3", "specValue4"].includes(key)) {
           this.goodsInfo.specList.push(this.goodsInfo[key]);
         }
       });
       let browseHistoryList = uni.getStorageSync("BROWSE_HISTORY") || [];
-
+ 
       let isAdd = browseHistoryList.some((v) => v._id == this.goodsInfo._id);
-
+      
       if (!isAdd && this.userInfo._id) {
         browseHistoryList.unshift(this.goodsInfo);
         uni.setStorageSync("BROWSE_HISTORY", browseHistoryList);
@@ -285,10 +305,8 @@ export default {
     toFavorite() {
       this.favorite = !this.favorite;
     },
-    buy() {
-      uni.navigateTo({
-        url: `/pages/order/createOrder`,
-      });
+    onBuy() {
+      uni.navigateTo({ url: `/pages/orderList/createOrder`});
     },
     imgAddMaxWidth(str) {
       return new Promise((reslove, reject) => {
@@ -300,7 +318,7 @@ export default {
         reslove(resStr);
       });
     },
-    stopPrevent() { },
+    stopPrevent() {},
   },
 };
 </script>
