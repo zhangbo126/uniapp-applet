@@ -306,7 +306,14 @@ export default {
       this.favorite = !this.favorite;
     },
     onBuy() {
-      uni.navigateTo({ url: `/pages/orderList/createOrder`});
+       this.$api.msg('立即购买')
+      // uni.navigateTo({ 
+      //   url: `/pages/orderList/createOrder`,
+      //   success:(res)=>{
+      //     const data = [this.goodsInfo]
+      //     res.eventChannel.emit("createOrder", data);
+      //   }
+      // });
     },
     imgAddMaxWidth(str) {
       return new Promise((reslove, reject) => {

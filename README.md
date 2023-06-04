@@ -4,7 +4,7 @@
 基于uni-app开发的电商小程序
 
 #### 软件架构
-###### 语言:uni-app 
+###### 语言:uni-app Vue2.0
 ###### UI:uview-ui2.0
 
 
