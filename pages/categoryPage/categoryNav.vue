@@ -92,7 +92,7 @@ export default {
     },
     navToList(categoryId) {
       uni.navigateTo({
-        url: `/pages/category/categoryList?categoryId=${categoryId}`,
+        url: `/pages/categoryPage/categoryList?categoryId=${categoryId}`,
       });
     },
   },
