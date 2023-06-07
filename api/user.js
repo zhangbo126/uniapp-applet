@@ -20,6 +20,10 @@ const api = {
 export const registerAccount = (data) => request('post', api.registerAccount, data)
 //登录
 export const login = (data) => request('post', api.login, data)
+
+//微信登录
+export const wxLogin = (data) => request('post', '/users/wxLogin', data)
+
 //获取用户信息
 export const getUserInfo = (data) => request('post', api.getUserInfo, data)
 

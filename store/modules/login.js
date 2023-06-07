@@ -45,7 +45,8 @@ const logins = {
         GetUserInfo({ commit }) {
             return new Promise((reslove, reject) => {
                 getUserInfo().then(res => {
-                    commit('SET_USER_INFO', res.data)
+                    const { userInfo } = res.data
+                    commit('SET_USER_INFO', userInfo)
                     reslove(res.data)
                 })
             })

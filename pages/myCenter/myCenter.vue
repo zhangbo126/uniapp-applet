@@ -6,22 +6,30 @@
         <view class="portrait-box">
           <image class="portrait" :src="avatars" />
         </view>
-        <view class="info-box">
-          <text class="username">{{ userInfo.userAccount || "游客" }}</text>
-          <text class="username" v-if="!userInfo.token" @click="navTo()">/登录</text>
+        <view v-if="userInfo.token">
+          <text class="username">{{ userInfo.userName }}</text>
+        </view>
+        <view class="info-box" v-else>
+          <text class="username">{{ "游客" }}</text>
+          <text class="username" @click="onLogin">/登录</text>
         </view>
       </view>
       <view class="vip-card-box"></view>
     </view>
 
-    <view class="cover-container" :style="[
+    <view
+      class="cover-container"
+      :style="[
         {
           transform: coverTransform,
           transition: coverTransition,
         },
-      ]" @touchstart="coverTouchstart" @touchmove="coverTouchmove" @touchend="coverTouchend">
+      ]"
+      @touchstart="coverTouchstart"
+      @touchmove="coverTouchmove"
+      @touchend="coverTouchend"
+    >
       <image class="arc" src="/static/arc.png" />
-
       <view class="tj-sction">
         <view class="tj-item">
           <text class="num">128.8</text>
@@ -38,19 +46,39 @@
       </view>
       <!-- 订单 -->
       <view class="order-section">
-        <view class="order-item" @click="navTo('/pages/orderList/orderList')" hover-class="common-hover" :hover-stay-time="50">
+        <view
+          class="order-item"
+          @click="navTo('/pages/orderList/orderList')"
+          hover-class="common-hover"
+          :hover-stay-time="50"
+        >
           <text class="yticon icon-shouye"></text>
           <text>全部订单</text>
         </view>
-        <view class="order-item" @click="navTo('/pages/orderList/orderList?status=1')" hover-class="common-hover" :hover-stay-time="50">
+        <view
+          class="order-item"
+          @click="navTo('/pages/orderList/orderList?status=1')"
+          hover-class="common-hover"
+          :hover-stay-time="50"
+        >
           <text class="yticon icon-daifukuan"></text>
           <text>待付款</text>
         </view>
-        <view class="order-item" @click="navTo('/pages/orderList/orderList?status=2')" hover-class="common-hover" :hover-stay-time="50">
+        <view
+          class="order-item"
+          @click="navTo('/pages/orderList/orderList?status=2')"
+          hover-class="common-hover"
+          :hover-stay-time="50"
+        >
           <text class="yticon icon-yishouhuo"></text>
           <text>待收货</text>
         </view>
-        <view class="order-item" @click="navTo('/pages/orderList/orderList?status=4')" hover-class="common-hover" :hover-stay-time="50">
+        <view
+          class="order-item"
+          @click="navTo('/pages/orderList/orderList?status=4')"
+          hover-class="common-hover"
+          :hover-stay-time="50"
+        >
           <text class="yticon icon-shouhoutuikuan"></text>
           <text>已取消</text>
         </view>
@@ -64,48 +92,70 @@
         <scroll-view scroll-x class="h-list">
           <view class="h-box">
             <view v-for="history in historyList" :key="history._id">
-              <image @click="navTo(`/pages/goodsDetail/goodsDetail?id=${history._id}`)" :src="history.imageFilePath" mode="aspectFill" />
+              <image
+                @click="navTo(`/pages/goodsDetail/goodsDetail?id=${history._id}`)"
+                :src="history.imageFilePath"
+                mode="aspectFill"
+              />
             </view>
           </view>
         </scroll-view>
-        <list-cell icon="icon-iconfontweixin" iconColor="#e07472" title="我的钱包" tips="您的会员还有3天过期"></list-cell>
-        <list-cell icon="icon-dizhi" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')"></list-cell>
-        <!-- <list-cell icon="icon-pinglun-copy" iconColor="#ee883b" title="晒单" tips="晒单抢红包"></list-cell> -->
-        <!-- <list-cell icon="icon-shoucang_xuanzhongzhuangtai" iconColor="#54b4ef" title="我的收藏"></list-cell> -->
-        <list-cell icon="icon-shezhi1" iconColor="#e07472" title="设置" border @eventClick="navTo('/pages/set/set')"></list-cell>
+        <list-cell
+          icon="icon-iconfontweixin"
+          iconColor="#e07472"
+          title="我的钱包"
+          tips="您的会员还有3天过期"
+        ></list-cell>
+        <list-cell
+          icon="icon-dizhi"
+          iconColor="#5fcda2"
+          title="地址管理"
+          @eventClick="navTo('/pages/address/address')"
+        ></list-cell>
+        <list-cell
+          icon="icon-shezhi1"
+          iconColor="#e07472"
+          title="设置"
+          border
+          @eventClick="navTo('/pages/set/set')"
+        ></list-cell>
       </view>
     </view>
   </view>
 </template>
 <script>
 import listCell from "@/components/mix-list-cell";
+import { wxLogin } from "@/api/user";
 import { mapState } from "vuex";
+import { USER_TOKEN } from "@/config/constant";
 let startY = 0,
   moveY = 0,
   pageAtTop = true;
 export default {
   components: {
-    listCell
+    listCell,
   },
   data() {
     return {
       coverTransform: "translateY(0px)",
       coverTransition: "0s",
       moving: false,
-      historyList: []
+      historyList: [],
     };
   },
-  computed:{
+  computed: {
     ...mapState({
-      userInfo: state => state.login.loginInfo
+      userInfo: (state) => state.login.userInfo,
     }),
-    avatars(){
-       return this.userInfo.token? 'https://portrait.gitee.com/uploads/avatars/user/1817/5452088_ZHANG_6666_1627609275.png!avatar200':'/static/missing-face.png' 
-    }
+    avatars() {
+      const { token, avatarUrl } = this.userInfo;
+      return token ? avatarUrl : "/static/missing-face.png";
+    },
   },
   onShow() {
+    console.log(this.userInfo);
     this.historyList = uni.getStorageSync("BROWSE_HISTORY") || [];
-    this.historyList.forEach(v => {
+    this.historyList.forEach((v) => {
       v.imageFilePath = v.designSketch[0];
     });
   },
@@ -120,19 +170,44 @@ export default {
       const page = pages[pages.length - 1];
       const currentWebview = page.$getAppWebview();
       currentWebview.hideTitleNViewButtonRedDot({
-        index
+        index,
       });
       // #endif
       uni.navigateTo({
-        url: "/pages/notice/notice"
+        url: "/pages/notice/notice",
       });
     }
   },
   // #endif
 
-
-
   methods: {
+    async onLogin() {
+      //获取用户信息
+      const [, userProfile] = await uni.getUserProfile({
+        desc: "获取用户信息",
+        lang: "zh_CN",
+      });
+
+      if (userProfile) {
+        //登录
+        const [, loginInfo] = await uni.login({ provider: "weixin" });
+        if (loginInfo) {
+          const { code } = await loginInfo;
+          const {
+            userInfo: { avatarUrl, nickName },
+          } = userProfile;
+          const params = {
+            code,
+            avatarUrl,
+            userName: nickName,
+          };
+          const { data } = await wxLogin(params);
+          uni.setStorageSync(USER_TOKEN, data.token);
+          this.$store.commit("SET_USER_INFO", data);
+          this.$api.msg("登陆成功");
+        }
+      }
+    },
     /**
      * 统一跳转接口,拦截未登录路由
      * navigator标签现在默认没有转场动画，所以用view
@@ -141,16 +216,8 @@ export default {
       if (!this.userInfo.token) {
         url = "/pages/loginPage/login";
       }
-      uni.navigateTo({url });
+      uni.navigateTo({ url });
     },
-
-    /**
-     *  会员卡下拉和回弹
-     *  1.关闭bounce避免ios端下拉冲突
-     *  2.由于touchmove事件的缺陷（以前做小程序就遇到，比如20跳到40，h5反而好很多），下拉的时候会有掉帧的感觉
-     *    transition设置0.1秒延迟，让css来过渡这段空窗期
-     *  3.回弹效果可修改曲线值来调整效果，推荐一个好用的bezier生成工具 http://cubic-bezier.com/
-     */
     coverTouchstart(e) {
       if (pageAtTop === false) {
         return;
@@ -181,8 +248,8 @@ export default {
       this.moving = false;
       this.coverTransition = "transform 0.3s cubic-bezier(.21,1.93,.53,.64)";
       this.coverTransform = "translateY(0px)";
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

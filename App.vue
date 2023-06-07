@@ -1,27 +1,23 @@
 <script>
-	import {
-		mapMutations,
-		mapActions
-	} from 'vuex';
-	export default {
-		methods: {
-			...mapMutations(['SET_LOGIN_INFO']),
-			...mapActions(['GetUserInfo'])
-		},
-		onLaunch: function() {
-			let userInfo = uni.getStorageSync('USER_INFO') || {};
-			if (userInfo.token) {
-				//更新登陆状态
-				this.SET_LOGIN_INFO(userInfo)
-				//获取登录用户信息
-				this.GetUserInfo()
-			}
-		},
-		onShow: function() {},
-		onHide: function() {},
-	}
+import { mapMutations, mapActions } from "vuex";
+import { USER_TOKEN } from "@/config/constant";
+export default {
+  methods: {
+    ...mapMutations(["SET_LOGIN_INFO"]),
+    ...mapActions(["GetUserInfo"]),
+  },
+  onLaunch() {
+    let token = uni.getStorageSync(USER_TOKEN) || null;
+    if (token) {
+      //获取登录用户信息
+      this.GetUserInfo();
+    }
+  },
+  onShow() {},
+  onHide() {},
+};
 </script>
 
-<style lang='scss'>
-	@import '@/style/global.scss';
+<style lang="scss">
+@import "@/style/global.scss";
 </style>

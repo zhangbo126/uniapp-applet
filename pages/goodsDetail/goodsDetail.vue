@@ -207,7 +207,7 @@ export default {
   },
   computed: {
     ...mapState({
-      userInfo: (state) => state.login.loginInfo,
+      userInfo: (state) => state.login.userInfo,
     }),
   },
   data() {
@@ -236,7 +236,7 @@ export default {
       if (!this.userInfo._id) {
         const [, res] = await uni.showModal({ content: "当前状态未来登录!是否去登录?" });
         if (res.confirm) {
-          return uni.navigateTo({url: "/pages/public/login",});
+          return uni.navigateTo({url: "/pages/loginPage/login",});
         }
       }
       let obj = Object.assign(
@@ -316,14 +316,11 @@ export default {
       // });
     },
     imgAddMaxWidth(str) {
-      return new Promise((reslove, reject) => {
-        if (!str) {
+       if (!str) {
           return "";
         }
         let regex = new RegExp("/>", "gi");
-        let resStr = str.replace(regex, " style='max-width:100%;height:auto'/>");
-        reslove(resStr);
-      });
+        return  str.replace(regex, " style='max-width:100%;height:auto'/>");
     },
     stopPrevent() {},
   },

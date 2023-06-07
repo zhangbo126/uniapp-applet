@@ -81,7 +81,7 @@ export default {
     toRegist() {
       // this.$api.msg('去注册');
       uni.navigateTo({
-        url: "/pages/public/register"
+        url: "/pages/loginPage/register"
       });
     },
     async toLogin() {

@@ -1,9 +1,10 @@
 
 const baseUrl = process.uniEnv.baseUrl
-const userInfo = uni.getStorageSync('USER_INFO') || {};
+import { USER_TOKEN } from "@/config/constant";
+const token = uni.getStorageSync(USER_TOKEN) || null;
 import { msg } from "./utilityFunction";
 const request = (method, url, data) => {
-	const token = userInfo.token
+
 	return new Promise((reslove, reject) => {
 		uni.request({
 			method,

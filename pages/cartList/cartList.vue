@@ -8,7 +8,7 @@
         <navigator class="navigator" v-if="userInfo.token" url="../index/index" open-type="switchTab">随便逛逛></navigator>
       </view>
       <view v-else class="empty-tips">
-        空空如也
+        未登录
         <view class="navigator" @click="navToLogin">去登陆></view>
       </view>
     </view>
@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     ...mapState({
-      userInfo: state => state.login.loginInfo
+      userInfo: state => state.login.userInfo
     }),
     showEmpty(){
       return !this.userInfo.token || this.cartList.length==0
@@ -81,6 +81,7 @@ export default {
     }
   },
   onShow() {
+    if(!this.userInfo.token)return false
     this.$nextTick(() => {
       this.getList();
     });
