@@ -5,11 +5,17 @@
       <image src="/static/emptyCart.jpg" mode="aspectFit" />
       <view v-if="userInfo.token" class="empty-tips">
         空空如也
-        <navigator class="navigator" v-if="userInfo.token" url="../index/index" open-type="switchTab">随便逛逛></navigator>
+        <navigator
+          class="navigator"
+          v-if="userInfo.token"
+          url="../index/index"
+          open-type="switchTab"
+          >随便逛逛></navigator
+        >
       </view>
       <view v-else class="empty-tips">
-        未登录
-        <view class="navigator" @click="navToLogin">去登陆></view>
+         <text>未登录</text>
+        <view class="navigator" @click="onWxLogin">微信快捷登录?</view>
       </view>
     </view>
     <view v-else>
@@ -19,23 +25,42 @@
           <view class="cart-item" :class="{ 'b-b': index !== cartList.length - 1 }">
             <view class="image-wrapper">
               <image :src="item.imageFilePath" mode="aspectFill" lazy-load />
-              <view class="yticon icon-xuanzhong2 checkbox" :class="{ checked: item.checked }" @click="onCheckGood('item', index)"></view>
+              <view
+                class="yticon icon-xuanzhong2 checkbox"
+                :class="{ checked: item.checked }"
+                @click="onCheckGood('item', index)"
+              ></view>
             </view>
             <view class="item-right">
               <text class="clamp title">{{ item.skuName }}</text>
               <text class="attr">{{ item.goodsName }}</text>
               <text class="price">¥{{ item.price }}</text>
-              <u-number-box class="step" :min="1" :max="99" v-model="item.num" @change="numberChange(item)"></u-number-box>
+              <u-number-box
+                class="step"
+                :min="1"
+                :max="99"
+                v-model="item.num"
+                @change="numberChange(item)"
+              ></u-number-box>
             </view>
-            <text class="del-btn yticon icon-fork" @click="deleteCartItem(index,item._id)"></text>
+            <text
+              class="del-btn yticon icon-fork"
+              @click="deleteCartItem(index, item._id)"
+            ></text>
           </view>
         </block>
       </view>
       <!-- 底部菜单栏 -->
       <view class="action-section">
         <view class="checkbox">
-          <image :src="allChecked ? '/static/selected.png' : '/static/select.png'" mode="aspectFit" @click="onCheckGood('all')" />
-          <view class="clear-btn" :class="{ show: allChecked }" @click="clearCart">清空</view>
+          <image
+            :src="allChecked ? '/static/selected.png' : '/static/select.png'"
+            mode="aspectFit"
+            @click="onCheckGood('all')"
+          />
+          <view class="clear-btn" :class="{ show: allChecked }" @click="clearCart"
+            >清空</view
+          >
         </view>
         <view class="total-box">
           <text class="price">¥{{ totalPrice }}</text>
@@ -44,7 +69,9 @@
             <text>74.35</text>元
           </text>
         </view>
-        <button type="primary" class="no-border confirm-btn" @click="createOrder">去结算</button>
+        <button type="primary" class="no-border confirm-btn" @click="createOrder">
+          去结算
+        </button>
       </view>
     </view>
   </view>
@@ -53,36 +80,38 @@
 <script>
 import { mapState } from "vuex";
 import { getCartList, addCart, delCart } from "@/api/user.js";
+import { USER_TOKEN } from "@/config/constant";
+import { wxLogin } from "@/api/user";
 export default {
   data() {
     return {
-      cartList: []
+      cartList: [],
     };
   },
   computed: {
     ...mapState({
-      userInfo: state => state.login.userInfo
+      userInfo: (state) => state.login.userInfo,
     }),
-    showEmpty(){
-      return !this.userInfo.token || this.cartList.length==0
+    showEmpty() {
+      return !this.userInfo.token || this.cartList.length == 0;
     },
-    allChecked(){
-       return this.cartList.filter(v=>v.checked).length == this.cartList.length
+    allChecked() {
+      return this.cartList.filter((v) => v.checked).length == this.cartList.length;
     },
     //购物车价格计算
-    totalPrice(){
-        let total =this.cartList.reduce((prev,curr,index,arr)=>{
-           if(curr.checked){
-              prev=  prev +curr.price +curr.num
-           }
-          return prev 
-        },0)
-        return total
-    }
+    totalPrice() {
+      let total = this.cartList.reduce((prev, curr, index, arr) => {
+        if (curr.checked) {
+          prev = prev + curr.price + curr.num;
+        }
+        return prev;
+      }, 0);
+      return total;
+    },
   },
   onShow() {
-    if(!this.userInfo.token)return false
     this.$nextTick(() => {
+      if(!this.userInfo.token)return false
       this.getList();
     });
   },
@@ -91,15 +120,37 @@ export default {
       const userId = this.userInfo._id;
       const { data } = await getCartList({ userId });
       this.cartList = data || [];
-      this.cartList.forEach(v => {
-        this.$set(v,'checked',false) 
-         v.imageFilePath = v.designSketch[0];
+      this.cartList.forEach((v) => {
+        this.$set(v, "checked", false);
+        v.imageFilePath = v.designSketch[0];
       });
     },
-    navToLogin() {
-      uni.navigateTo({
-        url: "/pages/public/login"
+    async onWxLogin() {
+      //获取用户信息
+      const [, userProfile] = await uni.getUserProfile({
+        desc: "获取用户信息",
+        lang: "zh_CN",
       });
+
+      if (userProfile) {
+        //登录
+        const [, loginInfo] = await uni.login({ provider: "weixin" });
+        if (loginInfo) {
+          const { code } = await loginInfo;
+          const {
+            userInfo: { avatarUrl, nickName },
+          } = userProfile;
+          const params = {
+            code,
+            avatarUrl,
+            userName: nickName,
+          };
+          const { data } = await wxLogin(params);
+          uni.setStorageSync(USER_TOKEN, data.token);
+          this.$store.commit("SET_USER_INFO", data);
+          this.$api.msg("登陆成功");
+        }
+      }
     },
     //选中状态处理
     onCheckGood(type, index) {
@@ -108,7 +159,7 @@ export default {
       } else {
         const checked = !this.allChecked;
         const list = this.cartList;
-        list.forEach(item => {
+        list.forEach((item) => {
           item.checked = checked;
         });
       }
@@ -120,53 +171,53 @@ export default {
         {
           num: data.num,
           userId: this.userInfo._id,
-          skuId: data.skuId
+          skuId: data.skuId,
         }
       );
-      addCart(obj)
+      addCart(obj);
     },
     //删除
     async deleteCartItem(index, _id) {
-      const idList= [_id]
-      const userId= this.userInfo._id
-      const {code} =await delCart({idList,userId})
-      if(code==1){
-         this.cartList.splice(index,1)
+      const idList = [_id];
+      const userId = this.userInfo._id;
+      const { code } = await delCart({ idList, userId });
+      if (code == 1) {
+        this.cartList.splice(index, 1);
       }
     },
     //清空
-   async clearCart() {
-    const [,e] = await  uni.showModal({content: "清空购物车？"})
-    if(e.confirm){
-        const idList = this.cartList.map(v => v._id);
-        const userId = this.userInfo._id
-        const {code}= await delCart({idList,userId})
-        if(code==1)this.cartList = [];
+    async clearCart() {
+      const [, e] = await uni.showModal({ content: "清空购物车？" });
+      if (e.confirm) {
+        const idList = this.cartList.map((v) => v._id);
+        const userId = this.userInfo._id;
+        const { code } = await delCart({ idList, userId });
+        if (code == 1) this.cartList = [];
       }
     },
     //创建订单
     createOrder() {
-      let goods = this.cartList.filter(v => v.checked);
+      let goods = this.cartList.filter((v) => v.checked);
       if (goods.length == 0) {
         return uni.showToast({
           icon: "none",
-          title: "请选择要结算的商品"
+          title: "请选择要结算的商品",
         });
       }
 
       uni.navigateTo({
-        url: `/pages/order/createOrder`,
+        url: `/pages/orderList/createOrder`,
         events: {
-          createOrder: data => {
+          createOrder: (data) => {
             console.log(data);
-          }
+          },
         },
         success(res) {
           res.eventChannel.emit("createOrder", goods);
-        }
+        },
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

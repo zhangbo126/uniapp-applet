@@ -1,7 +1,6 @@
 {
 
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/index/index",
 			"style": {
 				// #ifdef MP 
@@ -62,30 +61,6 @@
 			}
 		},
 		{
-			"path": "pages/loginPage/login",
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom",
-				"app-plus": {
-					"titleNView": false,
-					"animationType": "slide-in-bottom"
-				}
-			}
-		},
-		{
-			"path": "pages/userInfo/userInfo",
-			"style": {
-				"navigationBarTitleText": "修改资料"
-			}
-		},
-		{
-			"path": "pages/loginPage/register",
-			"style": {
-
-				"navigationBarTitleText": "注册"
-			}
-		},
-		{
 			"path": "pages/myCenter/myCenter",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -116,7 +91,7 @@
 					}
 				}
 			}
-		},  {
+		}, {
 			"path": "pages/orderList/orderList",
 			"style": {
 				"navigationBarTitleText": "我的订单",

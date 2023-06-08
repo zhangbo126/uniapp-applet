@@ -153,7 +153,6 @@ export default {
     },
   },
   onShow() {
-    console.log(this.userInfo);
     this.historyList = uni.getStorageSync("BROWSE_HISTORY") || [];
     this.historyList.forEach((v) => {
       v.imageFilePath = v.designSketch[0];

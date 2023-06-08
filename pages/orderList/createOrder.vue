@@ -6,7 +6,7 @@
         <text class="yticon icon-shouhuodizhi"></text>
         <view class="cen">
           <view class="top">
-            <text class="name">{{userInfo.userAccount}}</text>
+            <text class="name">{{userInfo.userAccount || userInfo.userName}}</text>
             <text class="mobile">{{userInfo.phone}}</text>
           </view>
           <text class="address">{{addressData.address}} {{addressData.area}}</text>

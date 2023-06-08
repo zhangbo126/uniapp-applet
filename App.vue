@@ -1,9 +1,8 @@
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { USER_TOKEN } from "@/config/constant";
 export default {
   methods: {
-    ...mapMutations(["SET_LOGIN_INFO"]),
     ...mapActions(["GetUserInfo"]),
   },
   onLaunch() {
